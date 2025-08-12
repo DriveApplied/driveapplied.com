@@ -1,0 +1,22 @@
+:root{
+  --brand:#0F72B8;
+  --brand-dark:#0A5C98;
+  --brand-light:#2CA4E0;
+}
+html{scroll-behavior:smooth}
+/* Simple container width for large screens */
+.container-narrow{max-width:1100px;margin:0 auto}
+/* subtle grid */
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);background-size:24px 24px}
+.hero-overlay{background:radial-gradient(ellipse at center, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%)}
+/* Card hover */
+.card{transition:transform .2s ease, box-shadow .2s ease}
+.card:hover{transform:translateY(-2px)}
+/* Button */
+.btn-brand{background:var(--brand);}
+.btn-brand:hover{background:var(--brand-dark)}
+/* Tag */
+.tag{background:rgba(15,114,184,.10);color:var(--brand-dark);border:1px solid rgba(15,114,184,.25)}
+/* Footer link */
+.footer-link{color:#9dbbd6}
+.footer-link:hover{color:white}

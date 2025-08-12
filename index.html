@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drive Technology – Intelligent Application Delivery
+</title>
+    <meta name="description"
+        content="Drive Technology (Drive Applied) designs and ships focused, secure, AI-enabled apps and deliverables. Boutique builds. Real outcomes.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <meta property="og:title" content="Drive Technology – Boutique App Maker">
+    <meta property="og:description" content="Focused deliverables. Secure, AI-enabled apps. Built with care.">
+    <meta property="og:image" content="assets/drive-web.png">
+    <meta name="theme-color" content="#0F72B8">
+    <!-- Tailwind Play CDN (no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Tailwind runtime config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preload" as="image" href="assets/hero-bg.jpg">
+</head>
+
+<body class="antialiased text-slate-800">
+    <!-- Nav -->
+    <header class="fixed top-0 inset-x-0 z-30 bg-white/80 backdrop-blur border-b border-slate-200">
+        <div class="container-narrow px-4 py-3 flex items-center justify-between">
+            <a href="#top" class="flex items-center gap-3">
+                <img src="assets/logo.png" alt="Drive Technology logo" class="w-8 h-8" loading="eager" decoding="async">
+                <span class="font-semibold tracking-wide text-[var(--brand)]">Drive Technology LLC</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+                <a href="#deliverables" class="hover:text-slate-900">Deliverables</a>
+                <!-- <a href="#work" class="hover:text-slate-900">Work</a> -->
+                <a href="#approach" class="hover:text-slate-900">Approach</a>
+                <a href="#about" class="hover:text-slate-900">About</a>
+            </nav>
+            <a href="#contact" class="btn-brand text-white px-4 py-2 rounded-xl text-sm shadow">Start a Build</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="top" class="relative min-h-[88vh] flex items-center">
+        <img src="assets/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Historic rocket launch">
+        <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white"></div>
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative container-narrow px-4 pt-28 pb-16">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 tag rounded-full px-3 py-1 text-xs mb-4">
+                    <span>App Maker</span><span>AI + Security</span><span>Python, Java, C#</span><span>SwiftUI • Web</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+                    Intelligent Applications. <br/><span class="text-[var(--brand)]">Real outcomes.</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-slate-700">
+                    We craft focused, secure, AI‑enabled apps and deliverables—no sprawling consulting engagements.
+                    Fixed scopes, fast cycles, production‑ready results.
+                </p>
+                <div class="mt-8 flex items-center gap-3">
+                    <a href="#deliverables" class="btn-brand text-white px-5 py-3 rounded-xl shadow">See
+                        Deliverables</a>
+                    <a href="#work" class="px-5 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50">View
+                        Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section id="deliverables" class="py-20 bg-slate-50">
+        <div class="container-narrow px-4">
+
+            <div class="flex items-center gap-4">
+                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Productized Deliverables</h2>
+                    <p class="mt-3 text-slate-600 max-w-2xl">Each deliverable is a fixed-scope build designed to ship
+                        quickly and slot into your stack. Optional extensions available by request.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="container-narrow px-4">
+            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card -->
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">Mobile</div>
+                    <h3 class="mt-2 text-xl font-semibold">SwiftUI App MVP</h3>
+                    <p class="mt-2 text-slate-600">Design and ship a native iOS/iPadOS app: navigation, auth, API
+                        integration, offline storage, and polished UI.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>Login & secure storage</li>
+                        <li>Config-driven API layer</li>
+                        <li>App Store–ready build</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">AI</div>
+                    <h3 class="mt-2 text-xl font-semibold">RAG Assistant Pack</h3>
+                    <p class="mt-2 text-slate-600">Ingest PDFs/URLs, vectorize, and deliver a private
+                        retrieval‑augmented assistant with citations and guardrails.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>Secure ingest pipeline</li>
+                        <li>Source‑linked answers</li>
+                        <li>Deployment as static UI</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">Security</div>
+                    <h3 class="mt-2 text-xl font-semibold">Encryption Service PoC</h3>
+                    <p class="mt-2 text-slate-600">File encryptor + key vault integration with audit trail, recovery
+                        flow, and simulated attestation.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>CLI + API + docs</li>
+                        <li>Observability hooks</li>
+                        <li>Demo & walkthrough</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">Data</div>
+                    <h3 class="mt-2 text-xl font-semibold">ETL to Analytics</h3>
+                    <p class="mt-2 text-slate-600">Source‑driven ETL with DLQ, validation, and XLSX delivery. Includes
+                        run reports and data dictionary.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>21‑source framework ready</li>
+                        <li>Dead letter queue</li>
+                        <li>Count validation</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">Web</div>
+                    <h3 class="mt-2 text-xl font-semibold">Boutique Microsite</h3>
+                    <p class="mt-2 text-slate-600">Fast, SEO‑ready static site (like this one) deployed to GitHub Pages.
+                        Includes brand theming.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>Responsive design</li>
+                        <li>OG/SEO meta + sitemap</li>
+                        <li>Contact CTA</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+
+                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">Ops</div>
+                    <h3 class="mt-2 text-xl font-semibold">Agentic / MCP Workflow Starter</h3>
+                    <p class="mt-2 text-slate-600">Define tasks, tools, and safe execution flows for automated
+                        assistants. Observability included.</p>
+                    <ul class="mt-4 text-sm list-disc list-inside text-slate-600">
+                        <li>Tool registry & guards</li>
+                        <li>Model Context Protocol enablement</li>
+                        <li>Runbook‑first design</li>
+                        <li>Metrics & logs</li>
+                    </ul>
+                    <div class="mt-5"><a href="#contact" class="text-[var(--brand)] font-medium">Request scope →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work -->
+    <!-- <section id="work" class="py-20">
+        <div class="container-narrow px-4">
+            <div class="flex items-center gap-4">
+                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Selected Work</h2>
+                    <p class="text-slate-600">A few in‑flight and recent deliverables.</p>
+                </div>
+            </div>
+            <div class="mt-10 grid md:grid-cols-2 gap-6">
+                <div class="rounded-2xl border p-6 bg-white card">
+                    <h3 class="font-semibold text-lg">Briefings App (SwiftUI)</h3>
+                    <p class="mt-2 text-slate-600">Role‑based daily intel pulled from curated sources with local storage
+                        and offline reading.</p>
+                    <div class="mt-3 text-sm text-slate-500">Stack: SwiftUI, JSON, static CDN</div>
+                </div>
+                <div class="rounded-2xl border p-6 bg-white card">
+                    <h3 class="font-semibold text-lg">GenSearch RAG POC</h3>
+                    <p class="mt-2 text-slate-600">Vectorized index across PDFs with formatted facts, security
+                        permissions, and citations UI.</p>
+                    <div class="mt-3 text-sm text-slate-500">Stack: Python, Azure AI Search</div>
+                </div>
+                <div class="rounded-2xl border p-6 bg-white card">
+                    <h3 class="font-semibold text-lg">Encryptor + Aegis Vault</h3>
+                    <p class="mt-2 text-slate-600">End‑to‑end encryption with key lifecycle, simulated attestation, and
+                        recovery story.</p>
+                    <div class="mt-3 text-sm text-slate-500">Stack: Azure, CLI, Observability</div>
+                </div>
+                <div class="rounded-2xl border p-6 bg-white card">
+                    <h3 class="font-semibold text-lg">ETL Field Guide</h3>
+                    <p class="mt-2 text-slate-600">Source‑driven ETL architecture with DLQ and job summary outputs to
+                        XLSX & dashboards.</p>
+                    <div class="mt-3 text-sm text-slate-500">Stack: Python, Pandas, SFTP/API</div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Approach -->
+    <section id="approach" class="py-20 bg-slate-50">
+        <div class="container-narrow px-4">
+            <div class="flex items-center gap-4">
+                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">A small, deliberate flow</h2>
+                </div>
+            </div>
+            <div class="mt-8 grid md:grid-cols-3 gap-6">
+                <div class="rounded-2xl border bg-white p-6 card">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">01</div>
+                    <h3 class="mt-2 font-semibold text-lg">Define the deliverable</h3>
+                    <p class="mt-2 text-slate-600">We frame scope, success conditions, and acceptance checks. You
+                        approve before build.</p>
+                </div>
+                <div class="rounded-2xl border bg-white p-6 card">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">02</div>
+                    <h3 class="mt-2 font-semibold text-lg">Build & show working</h3>
+                    <p class="mt-2 text-slate-600">Short cycles with visible progress. We ship increments that run
+                        locally or as static demos.</p>
+                </div>
+                <div class="rounded-2xl border bg-white p-6 card">
+                    <div class="text-sm uppercase tracking-wide text-slate-500">03</div>
+                    <h3 class="mt-2 font-semibold text-lg">Deliver & hand off</h3>
+                    <p class="mt-2 text-slate-600">You get code, docs, and a recorded walkthrough. Support options
+                        available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20">
+        <div class="container-narrow px-4">
+            <div class="flex items-center gap-4">
+                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">About Drive Technology</h2>
+                </div>
+            </div>
+            <div class="mt-6 grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <p class="text-slate-700">Drive Technology (Drive Applied) builds compact, high‑impact software. We
+                        sit at the intersection of intelligent solutions, security, and FinOps. The bias is toward
+                        shipping working software—not slide decks.</p>
+                    <ul class="mt-4 grid sm:grid-cols-2 gap-2 text-slate-700">
+                        <li>• SwiftUI, Python, TypeScript</li>
+                        <li>• MCP, RAG & agentic patterns</li>
+                        <li>• Encryption & key management</li>
+                        <li>• Static sites & GitHub Pages</li>
+                        <li>• Cloud: Azure, AWS, GCP</li>
+                        <li>• Robotics, IoT, small devices</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border bg-slate-50 p-6">
+                    <div class="text-sm text-slate-600">Contact</div>
+                    <div class="mt-2 font-medium">info@drivetechnology.llc</div>
+                    <div class="mt-3 text-sm text-slate-600">Location</div>
+                    <div class="mt-1">United States (EST)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-slate-900 text-white">
+        <div class="container-narrow px-4">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl md:text-4xl font-bold">Ready to start a build?</h2>
+                    <p class="mt-3 text-slate-300">Send a short note with the deliverable you want and your timeline.
+                        We'll reply with a scope outline and next steps.</p>
+                </div>
+                <div>
+                    <a href="mailto:info@drivetechnology.llc?subject=Start%20a%20Build%20-%20Drive%20Technology"
+                        class="inline-block btn-brand text-white px-6 py-3 rounded-xl shadow">Email Drive</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 text-slate-400">
+        <div class="container-narrow px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="assets/logo.png" class="w-6 h-6" alt="Drive logo">
+                <span class="text-sm">© 2025 Drive Technology LLC</span>
+            </div>
+            <div class="text-sm">
+                <a href="#deliverables" class="footer-link">Deliverables</a> ·
+                <a href="#work" class="footer-link">Work</a> ·
+                <a href="#about" class="footer-link">About</a> ·
+                <a class="footer-link" href="mailto:info@drivetechnology.llc">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
