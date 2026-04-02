@@ -1,0 +1,21 @@
+{
+  "name": "Molly's Paris Adventure",
+  "short_name": "Paris Trip",
+  "description": "Countdown and travel guide for Molly's Paris trip",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#8B7355",
+  "theme_color": "#8B7355",
+  "icons": [
+    {
+      "src": "../assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
