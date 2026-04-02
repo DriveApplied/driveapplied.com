@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paris History: April Facts</title>
+  <meta name="description" content="Daily Paris history facts for April 2–13" />
+  <meta name="theme-color" content="#8B7355" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100%; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #d4a373 0%, #8B7355 50%, #5a4a3a 100%);
+      color: #333;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      padding: 40px 30px 80px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #8B7355; margin-bottom: 10px; text-align:center; }
+    .subtitle { text-align:center; color:#666; margin-bottom:30px; }
+    .back-link { display:inline-block; margin-bottom:20px; color:#8B7355; text-decoration:none; font-weight:500; }
+    .back-link:hover { color:#d4a373; }
+    .day-box {
+      border: 1px solid #e0d5c7;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 15px;
+      background: #fbf7f1;
+    }
+    .day-title { margin-bottom: 10px; color: #8B7355; font-weight:700; }
+    .day-text { line-height: 1.6; }
+    .info { margin-top: 16px; padding: 12px; border-left: 4px solid #8B7355; background: #fff6dc; }
+    @media (max-width: 600px) {
+      .container { padding: 30px 18px 70px; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Countdown</a>
+    <h1>Paris History: April 2–13</h1>
+    <div class="subtitle">Daily history spotlight around your travel dates</div>
+    <div id="dayFact" class="day-box">
+      <div class="day-title">Loading...</div>
+      <div class="day-text"></div>
+    </div>
+    <div id="dayInfo" class="info"></div>
+  </div>
+  <script>
+    const facts = {
+      2: '1848: Following the February Revolution, the Second Republic was proclaimed in Paris the day before, and the city became the center of a renewed push for democracy and workers’ rights.',
+      3: '1886: French novelist Emile Zola published his groundbreaking work "L\'Assommoir"—a stark look at working-class life in Paris that influenced naturalist literature.',
+      4: '1968: Student protests in Paris began building around demands for university reform and broader social change; they erupted into nationwide strikes in May.',
+      5: '1925: The first Cannes Film Festival (organized in Paris by the French government) was announced, soon becoming a major international cultural event.',
+      6: '1759: The first permanent circus building in France opened in Paris, marking the beginning of modern circus arts in the city.',
+      7: '1886: French artist Camille Pissarro painted "Boulevard Montmartre" capturing the lively city street and heralding the modern Parisian urban identity.',
+      8: '1950: Paris hosted the first UNESCO meeting to rebuild post-war cultural and educational cooperation between nations.',
+      9: '1905: The French law on the Separation of the Churches and State was passed in December, but in April Paris saw a major debate on secularism and public schools.',
+      10: '1981: In April 1981, Valéry Giscard d\’Estaing pardoned many political prisoners and began reforms that shaped late 20th-century Paris society.',
+      11: '2002: Paris police gathered in April to prepare security measures for the upcoming UEFA Euro 2004 tournament and the city\'s large international events.',
+      12: '2013: In April, Paris celebrated the opening of the restored Fontaine Saint-Michel as part of a broader heritage preservation effort.',
+      13: '1888: Paris architect Victor Baltard\'s Les Halles market building was still a central hub for the city\'s food trade and daily life, representing a historic Parisian tradition.'
+    };
+
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+
+    const dayBox = document.getElementById('dayFact');
+    const title = dayBox.querySelector('.day-title');
+    const text = dayBox.querySelector('.day-text');
+    const dayInfo = document.getElementById('dayInfo');
+
+    function setDayFact(day) {
+      if (month === 4 && facts[day]) {
+        title.textContent = `April ${day}`;
+        text.textContent = facts[day];
+        dayInfo.textContent = 'Tip: Check this every day for a new Paris fact during your trip countdown!';
+      } else if (month === 4 && day < 2) {
+        title.textContent = 'Stay tuned';
+        text.textContent = 'The April history series starts on April 2. Come back then for daily Paris facts!';
+        dayInfo.textContent = 'Your trip is approaching—make sure your countdown date is set correctly.';
+      } else if (month === 4 && day > 13) {
+        title.textContent = 'Adventure continues';
+        text.textContent = 'April 2–13 history facts have ended; keep enjoying Paris with new discoveries each day!';
+        dayInfo.textContent = 'You can still review the April highlights below.';
+      } else {
+        title.textContent = 'April 2–13 History Facts';
+        text.textContent = 'Today is not in the April 2–13 range. In April, return for a new daily fact between these dates.';
+        dayInfo.textContent = 'Hint: If you are counting down to travel, this section updates in early April.';
+      }
+    }
+
+    setDayFact(day);
+  </script>
+</body>
+</html>
