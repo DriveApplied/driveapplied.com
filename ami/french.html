@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>French Conversation Guide - Molly's Paris Adventure</title>
+    <meta name="description" content="Essential French words and phrases for travelers">
+    <meta name="theme-color" content="#8B7355">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #d4a373 0%, #8B7355 50%, #5a4a3a 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #8B7355;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #8B7355;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #d4a373;
+        }
+
+        .accordion {
+            border-top: 2px solid #e0d5c7;
+        }
+
+        .accordion-item {
+            border-bottom: 2px solid #e0d5c7;
+        }
+
+        .accordion-header {
+            background: #f5f1e8;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #8B7355;
+        }
+
+        .accordion-header:hover {
+            background: #ede7dc;
+        }
+
+        .accordion-header.active {
+            background: #d4a373;
+            color: white;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .phrase-group {
+            padding: 20px;
+        }
+
+        .phrase-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0d5c7;
+        }
+
+        .phrase-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .english {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .french {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #8B7355;
+            margin-bottom: 4px;
+        }
+
+        .pronunciation {
+            font-size: 0.85rem;
+            color: #d4a373;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .accordion-header {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+
+            .phrase-item {
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Countdown</a>
+        
+        <h1>French Conversation Guide</h1>
+        <div class="subtitle">Essential phrases for your Paris adventure</div>
+
+        <div class="accordion">
+            <!-- Greetings -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Greetings & Politeness</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">Hello</div>
+                            <div class="french">Bonjour</div>
+                            <div class="pronunciation">bon-ZHOOR</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Good evening</div>
+                            <div class="french">Bonsoir</div>
+                            <div class="pronunciation">bon-SWAH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Thank you</div>
+                            <div class="french">Merci</div>
+                            <div class="pronunciation">mare-SEE</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Thank you very much</div>
+                            <div class="french">Merci beaucoup</div>
+                            <div class="pronunciation">mare-SEE boh-KOO</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Please</div>
+                            <div class="french">S'il vous plaît</div>
+                            <div class="pronunciation">see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Excuse me / Sorry</div>
+                            <div class="french">Excusez-moi / Pardon</div>
+                            <div class="pronunciation">ek-skew-zay-MWAH / par-DONG</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">You're welcome</div>
+                            <div class="french">De rien</div>
+                            <div class="pronunciation">duh ree-ANG</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Goodbye</div>
+                            <div class="french">Au revoir</div>
+                            <div class="pronunciation">oh-ruh-VWAH</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Communication -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Basic Communication</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">My name is...</div>
+                            <div class="french">Je m'appelle...</div>
+                            <div class="pronunciation">zhuh mah-PEL</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">What is your name?</div>
+                            <div class="french">Quel est votre nom?</div>
+                            <div class="pronunciation">kel eh VOH-truh nom</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I don't understand</div>
+                            <div class="french">Je ne comprends pas</div>
+                            <div class="pronunciation">zhuh nuh com-PRAHN pah</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Do you speak English?</div>
+                            <div class="french">Parlez-vous anglais?</div>
+                            <div class="pronunciation">par-lay-VOO AHN-gleh</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Slowly, please</div>
+                            <div class="french">Lentement, s'il vous plaît</div>
+                            <div class="pronunciation">lent-MAHN, see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">How are you?</div>
+                            <div class="french">Comment allez-vous?</div>
+                            <div class="pronunciation">kom-MAHN tah-lay-VOO</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I'm fine, thank you</div>
+                            <div class="french">Ça va bien, merci</div>
+                            <div class="pronunciation">sah vah bee-ANG, mare-SEE</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dining & Restaurants -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Dining & Restaurants</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">A table for one</div>
+                            <div class="french">Une table pour une personne</div>
+                            <div class="pronunciation">oon tah-bluh poor oon pair-SON</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The menu, please</div>
+                            <div class="french">Le menu, s'il vous plaît</div>
+                            <div class="pronunciation">luh muh-NOO, see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">What do you recommend?</div>
+                            <div class="french">Qu'est-ce que vous recommandez?</div>
+                            <div class="pronunciation">kes-kuh voo ruh-kom-AHN-day</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I am vegetarian</div>
+                            <div class="french">Je suis végétarienne</div>
+                            <div class="pronunciation">zhuh swee vay-zhay-TAR-ee-en</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The bill, please</div>
+                            <div class="french">L'addition, s'il vous plaît</div>
+                            <div class="pronunciation">lah-dee-see-OHN, see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Delicious!</div>
+                            <div class="french">Délicieux!</div>
+                            <div class="pronunciation">day-lee-see-UH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Water, please</div>
+                            <div class="french">De l'eau, s'il vous plaît</div>
+                            <div class="pronunciation">duh loh, see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Coffee / Tea</div>
+                            <div class="french">Un café / Un thé</div>
+                            <div class="pronunciation">uhn kah-FAY / uhn tay</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Directions & Getting Around -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Directions & Getting Around</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">Where is...?</div>
+                            <div class="french">Où est...?</div>
+                            <div class="pronunciation">oo eh</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The Metro station</div>
+                            <div class="french">La station de métro</div>
+                            <div class="pronunciation">lah stah-see-OHN duh MAY-troh</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Straight ahead</div>
+                            <div class="french">Tout droit</div>
+                            <div class="pronunciation">too DRAH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Left / Right</div>
+                            <div class="french">À gauche / À droite</div>
+                            <div class="pronunciation">ah GOHSH / ah DRAH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">How much is a ticket?</div>
+                            <div class="french">Combien coûte un billet?</div>
+                            <div class="pronunciation">kom-bee-ANG koot uhn bee-YEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Taxi, please</div>
+                            <div class="french">Un taxi, s'il vous plaît</div>
+                            <div class="pronunciation">uhn TAK-see, see-voo PLEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The airport</div>
+                            <div class="french">L'aéroport</div>
+                            <div class="pronunciation">lah-ay-roh-POR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping & Money -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Shopping & Money</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">How much does this cost?</div>
+                            <div class="french">Combien coûte ce-ci?</div>
+                            <div class="pronunciation">kom-bee-ANG koot suh-SEE</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">That's too expensive</div>
+                            <div class="french">C'est trop cher</div>
+                            <div class="pronunciation">seh troh SHAIR</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Do you have a smaller size?</div>
+                            <div class="french">Avez-vous une plus petite taille?</div>
+                            <div class="pronunciation">ah-vay-VOO oon plus puh-TEET TIGH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I'm looking for...</div>
+                            <div class="french">Je cherche...</div>
+                            <div class="pronunciation">zhuh SHERSH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Do you accept credit cards?</div>
+                            <div class="french">Acceptez-vous les cartes de crédit?</div>
+                            <div class="pronunciation">ak-sep-tay-VOO lay kart duh KRAY-dee</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Can I try this on?</div>
+                            <div class="french">Puis-je essayer ça?</div>
+                            <div class="pronunciation">pwee-zhuh eh-say-YAY sah</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergencies & Helpful Phrases -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Emergencies & Help</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">Help!</div>
+                            <div class="french">À l'aide!</div>
+                            <div class="pronunciation">ah LEHD</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Call the police</div>
+                            <div class="french">Appelez la police</div>
+                            <div class="pronunciation">ah-puh-LAY lah poh-LEES</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I need a doctor</div>
+                            <div class="french">J'ai besoin d'un médecin</div>
+                            <div class="pronunciation">zhay buh-SWAN duhn may-duh-SAN</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Hospital</div>
+                            <div class="french">L'hôpital</div>
+                            <div class="pronunciation">loh-pee-TAHL</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I'm lost</div>
+                            <div class="french">Je suis perdue</div>
+                            <div class="pronunciation">zhuh swee pair-DOO</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">Can you help me?</div>
+                            <div class="french">Pouvez-vous m'aider?</div>
+                            <div class="pronunciation">poo-vay-VOO may-DAY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sightseeing -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Sightseeing & Culture</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="phrase-group">
+                        <div class="phrase-item">
+                            <div class="english">How beautiful!</div>
+                            <div class="french">C'est magnifique!</div>
+                            <div class="pronunciation">seh mag-nee-FEEK</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The Eiffel Tower</div>
+                            <div class="french">La Tour Eiffel</div>
+                            <div class="pronunciation">lah TOOR eye-FEL</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">The Louvre Museum</div>
+                            <div class="french">Le Musée du Louvre</div>
+                            <div class="pronunciation">luh moo-zay doo LOO-vruh</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">I would like a ticket</div>
+                            <div class="french">Je voudrais un billet</div>
+                            <div class="pronunciation">zhuh voo-DREH uhn bee-YEH</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">What time do you open/close?</div>
+                            <div class="french">À quelle heure ouvrez-vous/fermez-vous?</div>
+                            <div class="pronunciation">ah kel UR oo-vray-VOO/fer-may-VOO</div>
+                        </div>
+                        <div class="phrase-item">
+                            <div class="english">This artwork is amazing</div>
+                            <div class="french">Cette œuvre d'art est incroyable</div>
+                            <div class="pronunciation">set uh-vruh dar eh an-krwah-AHL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
