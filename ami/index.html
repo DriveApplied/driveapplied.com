@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#1a1a2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="/assets/paris-icon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/paris-icon.png" />
@@ -84,13 +84,13 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-family: 'Poiret One', sans-serif;
+            font-size: clamp(2.5rem, 9vw, 5rem);
             color: #f5f1e8;
             margin-bottom: 30px;
             margin-top: 30px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
+            letter-spacing: 4px;
         }
 
         .countdown {
@@ -145,15 +145,21 @@
         }
 
         .resources {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
             max-width: 700px;
             margin: 40px auto;
         }
 
         .resource-link {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 0 1 200px;
+            min-height: 48px;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.6);
             color: #d4af37;
