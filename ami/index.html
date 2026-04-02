@@ -43,10 +43,15 @@
             z-index: 1;
         }
 
+        @media (max-width: 900px) {
+            body::before {
+                background: url('https://images.unsplash.com/photo-1543340713-1310f5f7ac2d?w=1200&h=1800&fit=crop') center 35% / cover no-repeat;
+            }
+        }
+
         @media (max-width: 600px) {
             body::before {
-                background: url('https://images.unsplash.com/photo-1463123081488-789f998ac9c4?w=1200&h=1800&fit=crop') center top / cover no-repeat;
-                background-position: center 20%;
+                background: url('https://images.unsplash.com/photo-1463123081488-789f998ac9c4?w=1200&h=1800&fit=crop') center 30% / cover no-repeat;
             }
         }
 
