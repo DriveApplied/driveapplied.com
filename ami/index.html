@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Molly's Paris Adventure Countdown</title>
     <meta name="description" content="Countdown to Molly's exciting trip to Paris!">
-    <meta name="theme-color" content="#8B7355">
+    <meta name="theme-color" content="#1a1a2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="/assets/paris-icon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/paris-icon.png" />
-    <meta name="theme-color" content="#8B7355">
+    <meta name="theme-color" content="#1a1a2e">
     <style>
         * {
             margin: 0;
@@ -28,8 +28,8 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(135deg, #d4a373 0%, #8B7355 50%, #5a4a3a 100%);
+            font-family: 'Josefin Sans', sans-serif;
+            background: linear-gradient(135deg, #2d1b0e 0%, #1a1a2e 50%, #0e0e1e 100%);
             position: relative;
             display: block;
         }
@@ -67,7 +67,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(30, 15, 5, 0.4);
             z-index: 2;
         }
 
@@ -84,13 +84,13 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-family: 'Poiret One', sans-serif;
+            font-size: clamp(2.5rem, 9vw, 5rem);
             color: #f5f1e8;
             margin-bottom: 30px;
             margin-top: 30px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
+            letter-spacing: 4px;
         }
 
         .countdown {
@@ -115,7 +115,7 @@
         .countdown-number {
             font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 700;
-            color: #ffd700;
+            color: #d4af37;
             font-family: 'Playfair Display', serif;
             line-height: 1;
         }
@@ -132,7 +132,7 @@
         .french-message {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: #ffd700;
+            color: #d4af37;
             margin: 40px 0 20px;
             font-style: italic;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
@@ -145,18 +145,24 @@
         }
 
         .resources {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
             max-width: 700px;
             margin: 40px auto;
         }
 
         .resource-link {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 0 1 200px;
+            min-height: 48px;
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 215, 0, 0.6);
-            color: #ffd700;
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            color: #d4af37;
             padding: 12px 16px;
             border-radius: 8px;
             text-decoration: none;
@@ -167,7 +173,7 @@
 
         .resource-link:hover {
             background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(255, 215, 0, 0.8);
+            border-color: rgba(212, 175, 55, 0.8);
             transform: translateY(-2px);
         }
 

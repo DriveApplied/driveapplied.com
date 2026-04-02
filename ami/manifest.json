@@ -4,8 +4,8 @@
   "description": "Countdown and travel guide for Molly's Paris trip",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#8B7355",
-  "theme_color": "#8B7355",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
   "icons": [
     {
       "src": "../assets/paris-icon.png",
