@@ -214,6 +214,16 @@
             white-space: pre-line;
         }
 
+        .summary-value a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .summary-value a:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+        }
+
         .days {
             display: grid;
             gap: 20px;
@@ -228,6 +238,10 @@
             overflow: hidden;
         }
 
+        .day-card[open] {
+            background: rgba(255, 251, 244, 0.96);
+        }
+
         .day-header {
             display: flex;
             align-items: end;
@@ -236,6 +250,12 @@
             padding: 24px 24px 18px;
             border-bottom: 1px solid var(--line);
             background: linear-gradient(180deg, rgba(173, 107, 45, 0.08), rgba(255, 255, 255, 0));
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .day-header::-webkit-details-marker {
+            display: none;
         }
 
         .day-title {
@@ -252,6 +272,20 @@
             color: var(--accent-deep);
             font-weight: 700;
             white-space: nowrap;
+        }
+
+        .day-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: rgba(173, 107, 45, 0.1);
+            color: var(--accent-deep);
+            font-size: 1.15rem;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
         .event-list {
@@ -274,6 +308,7 @@
             border-color: rgba(173, 107, 45, 0.4);
             box-shadow: inset 0 0 0 1px rgba(173, 107, 45, 0.18);
             background: linear-gradient(135deg, rgba(255, 247, 230, 0.98), rgba(255, 250, 241, 0.98));
+            scroll-margin-top: 24px;
         }
 
         .time-badge {
@@ -578,9 +613,26 @@
             })).filter(Boolean).sort((left, right) => left.date - right.date || left.dayIndex - right.dayIndex || left.componentIndex - right.componentIndex);
         }
 
-        function makeEventCard(component, isNextUp) {
+        function openDayForAnchor(anchorId) {
+            if (!anchorId) {
+                return;
+            }
+
+            const target = document.getElementById(anchorId);
+            if (!target) {
+                return;
+            }
+
+            const dayCard = target.closest('.day-card');
+            if (dayCard && !dayCard.open) {
+                dayCard.open = true;
+            }
+        }
+
+        function makeEventCard(component, isNextUp, eventId) {
             const article = document.createElement('article');
             article.className = `event${isNextUp ? ' next-up' : ''}`;
+            article.id = eventId;
 
             const eventDate = parseEventDate(component);
             const timeBadge = document.createElement('div');
@@ -622,22 +674,34 @@
             const now = new Date();
             const nextEvent = timedEvents.find((event) => event.date.getTime() > now.getTime()) || null;
             const nextEventKey = nextEvent ? `${nextEvent.dayIndex}-${nextEvent.componentIndex}` : null;
+            const nextEventId = nextEvent ? `event-${nextEvent.dayIndex}-${nextEvent.componentIndex}` : null;
 
             document.getElementById('tourName').textContent = data.prodTourName || 'Paris Itinerary';
             document.getElementById('tourSummary').textContent = `${data.tourCode || ''} · ${data.duration || data.days.length} days · Timed events shown in Paris local time.`;
             document.getElementById('tourDates').textContent = `${formatParisDateLong(new Date(data.startDate))} to ${formatParisDateLong(new Date(data.endDate))}`;
             document.getElementById('eventCount').textContent = `${data.days.reduce((count, day) => count + day.components.length, 0)} scheduled items`;
-            document.getElementById('nextEventSummary').textContent = nextEvent
-                ? `${formatParisDate(nextEvent.date)} at ${formatParisTime(nextEvent.date)}\n${nextEvent.title.trim()}`
-                : 'No upcoming timed events';
+            const nextEventSummary = document.getElementById('nextEventSummary');
+            if (nextEvent && nextEventId) {
+                nextEventSummary.innerHTML = '';
+                const nextEventLink = document.createElement('a');
+                nextEventLink.href = `#${nextEventId}`;
+                nextEventLink.textContent = `${formatParisDate(nextEvent.date)} at ${formatParisTime(nextEvent.date)}\n${nextEvent.title.trim()}`;
+                nextEventLink.addEventListener('click', () => openDayForAnchor(nextEventId));
+                nextEventSummary.appendChild(nextEventLink);
+            } else {
+                nextEventSummary.textContent = 'No upcoming timed events';
+            }
 
             daysRoot.innerHTML = '';
 
             data.days.forEach((day, dayIndex) => {
-                const card = document.createElement('section');
+                const card = document.createElement('details');
                 card.className = 'day-card';
+                if ((nextEvent && nextEvent.dayIndex === dayIndex) || (!nextEvent && dayIndex === 0)) {
+                    card.open = true;
+                }
 
-                const header = document.createElement('header');
+                const header = document.createElement('summary');
                 header.className = 'day-header';
 
                 const titleWrap = document.createElement('div');
@@ -656,8 +720,18 @@
                 count.className = 'day-count';
                 count.textContent = `${day.components.length} items`;
 
+                const toggle = document.createElement('div');
+                toggle.className = 'day-toggle';
+                toggle.setAttribute('aria-hidden', 'true');
+                toggle.textContent = card.open ? '-' : '+';
+
+                card.addEventListener('toggle', () => {
+                    toggle.textContent = card.open ? '-' : '+';
+                });
+
                 header.appendChild(titleWrap);
                 header.appendChild(count);
+                header.appendChild(toggle);
 
                 const eventList = document.createElement('div');
                 eventList.className = 'event-list';
@@ -669,7 +743,8 @@
                     eventList.appendChild(empty);
                 } else {
                     day.components.forEach((component, componentIndex) => {
-                        eventList.appendChild(makeEventCard(component, `${dayIndex}-${componentIndex}` === nextEventKey));
+                        const eventId = `event-${dayIndex}-${componentIndex}`;
+                        eventList.appendChild(makeEventCard(component, `${dayIndex}-${componentIndex}` === nextEventKey, eventId));
                     });
                 }
 
@@ -680,6 +755,10 @@
 
             loadingState.hidden = true;
             daysRoot.hidden = false;
+
+            if (window.location.hash) {
+                openDayForAnchor(window.location.hash.slice(1));
+            }
         }
 
         async function loadItinerary() {
