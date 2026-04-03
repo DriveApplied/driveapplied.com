@@ -214,9 +214,48 @@
             padding: 28px;
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 28px;
-            background: linear-gradient(180deg, rgba(24, 18, 26, 0.64), rgba(11, 13, 22, 0.6));
+            background: linear-gradient(180deg, rgba(24, 18, 26, 0.40), rgba(11, 13, 22, 0.20));
             backdrop-filter: blur(12px);
             box-shadow: 0 20px 80px rgba(0, 0, 0, 0.28);
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .hero-copy {
+            min-width: 0;
+        }
+
+        .event-time-badge {
+            display: grid;
+            gap: 2px;
+            min-width: 140px;
+            padding: 14px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            text-align: right;
+        }
+
+        .event-time {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 4vw, 2.3rem);
+            line-height: 1;
+            color: var(--cream);
+        }
+
+        .event-time-zone {
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 232, 0.72);
         }
 
         .status {
@@ -227,11 +266,11 @@
         }
 
         .countdown-title {
-            margin-top: 14px;
+            margin-top: 12px;
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-            line-height: 1.2;
-            white-space: pre-line;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            line-height: 1.08;
+            text-wrap: balance;
         }
 
         .countdown-meta {
@@ -240,12 +279,87 @@
             color: rgba(245, 241, 232, 0.8);
         }
 
+        .event-glance {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .glance-card {
+            padding: 14px 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .glance-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 232, 0.62);
+        }
+
+        .glance-value {
+            margin-top: 8px;
+            font-size: 1rem;
+            line-height: 1.35;
+            color: var(--cream);
+        }
+
+        .event-highlights {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+            list-style: none;
+        }
+
+        .event-highlights[hidden] {
+            display: none;
+        }
+
+        .event-highlights li {
+            position: relative;
+            padding: 12px 14px 12px 34px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(245, 241, 232, 0.92);
+            line-height: 1.45;
+        }
+
+        .event-highlights li::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 14px;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.14);
+        }
+
+        .event-note {
+            margin-top: 18px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(245, 241, 232, 0.84);
+            line-height: 1.6;
+        }
+
+        .event-note[hidden] {
+            display: none;
+        }
+
         .countdown {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
             max-width: 580px;
-            margin: 30px auto 0;
+            margin: 28px 0 0;
         }
 
         .countdown-item {
@@ -314,7 +428,7 @@
             padding: 18px;
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.14);
-            background: rgba(10, 10, 18, 0.32);
+            background: rgba(10, 10, 18, 0.20);
             backdrop-filter: blur(12px);
         }
 
@@ -418,6 +532,19 @@
                 padding: 22px 18px;
             }
 
+            .hero-header {
+                grid-template-columns: 1fr;
+            }
+
+            .event-time-badge {
+                min-width: 0;
+                text-align: left;
+            }
+
+            .event-glance {
+                grid-template-columns: 1fr;
+            }
+
             .countdown {
                 gap: 12px;
             }
@@ -460,9 +587,35 @@
         <p id="themeHint" class="theme-hint">Today's theme: Paris Icons</p>
 
         <section class="hero-card" aria-live="polite">
-            <p class="status" id="countdownStatus">Loading itinerary</p>
-            <p class="countdown-title" id="countdownLabel">Fetching the next event from Paris...</p>
-            <p class="countdown-meta" id="countdownMeta">Europe/Paris</p>
+            <div class="hero-header">
+                <div class="hero-copy">
+                    <p class="status" id="countdownStatus">Loading itinerary</p>
+                    <h2 class="countdown-title" id="countdownLabel">Fetching the next event from Paris...</h2>
+                    <p class="countdown-meta" id="countdownMeta">Europe/Paris</p>
+                </div>
+                <div class="event-time-badge">
+                    <span class="event-time" id="eventTime">--:--</span>
+                    <span class="event-time-zone" id="eventTimeZone">Paris time</span>
+                </div>
+            </div>
+
+            <div class="event-glance" id="eventGlance">
+                <div class="glance-card">
+                    <p class="glance-label" id="glanceOneLabel">When</p>
+                    <p class="glance-value" id="glanceOneValue">Waiting for itinerary</p>
+                </div>
+                <div class="glance-card">
+                    <p class="glance-label" id="glanceTwoLabel">Focus</p>
+                    <p class="glance-value" id="glanceTwoValue">Trip update</p>
+                </div>
+                <div class="glance-card">
+                    <p class="glance-label" id="glanceThreeLabel">Day</p>
+                    <p class="glance-value" id="glanceThreeValue">Europe/Paris</p>
+                </div>
+            </div>
+
+            <ul class="event-highlights" id="eventHighlights" hidden></ul>
+            <p class="event-note" id="eventNote" hidden></p>
 
             <div class="countdown">
                 <div class="countdown-item">
@@ -518,6 +671,7 @@
         const DEFAULT_THEME_IMAGE = 'assets/paris-default.jpg';
         const ARRIVAL_THEME_IMAGE = 'assets/paris-arrival.jpg';
         const DISNEY_THEME_IMAGE = 'assets/paris-disney.jpg';
+        const EIFFEL_THEME_IMAGE = 'assets/paris-eiffel.jpg';
         const NEIGHBORHOOD_THEME_IMAGE = 'assets/paris-neighborhood.jpg';
         const ART_THEME_IMAGE = 'assets/paris-art.jpg';
         const SHOPPING_THEME_IMAGE = 'assets/paris-shopping.jpg';
@@ -561,6 +715,19 @@
                     { pattern: /perfume|guided visit|licensed local guide/i, weight: 4 }
                 ]
             },
+            eiffel: {
+                label: 'Eiffel Tower Moments',
+                image: EIFFEL_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.88) contrast(1.06)',
+                opacity: '0.56',
+                overlay: 'linear-gradient(to bottom, rgba(16, 18, 37, 0.16), rgba(10, 12, 24, 0.6))',
+                priority: 9,
+                rules: [
+                    { pattern: /eiffel tower|tour eiffel|trocad[eé]ro|champ de mars/i, weight: 14 },
+                    { pattern: /seine river cruise|bateaux mouches|river cruise/i, weight: 5 }
+                ]
+            },
             neighborhood: {
                 label: 'Neighborhood Explorations',
                 image: NEIGHBORHOOD_THEME_IMAGE,
@@ -571,7 +738,7 @@
                 priority: 7,
                 rules: [
                     { pattern: /latin quarter|notre-?dame|sacre|moulin rouge/i, weight: 8 },
-                    { pattern: /champs-elys|arc de triomphe|concorde|palais royal|les halles|rue montorgueil|eiffel tower|seine river cruise/i, weight: 6 }
+                    { pattern: /champs-elys|arc de triomphe|concorde|palais royal|les halles|rue montorgueil/i, weight: 6 }
                 ]
             },
             shopping: {
@@ -986,6 +1153,160 @@
             }).format(date);
         }
 
+        function formatParisTime(date) {
+            return getFormatter('paris-time', {
+                timeZone: PARIS_TIME_ZONE,
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(date);
+        }
+
+        function formatParisShortDate(date) {
+            return getFormatter('paris-short-date', {
+                timeZone: PARIS_TIME_ZONE,
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            }).format(date);
+        }
+
+        function normalizeLine(text) {
+            return (text || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function stripLeadingTime(text) {
+            return text
+                .replace(/^\d{1,2}([:.]\d{2})\s*(am|pm)\b[:\-\s]*/i, '')
+                .replace(/^\d{1,2}([:.]\d{2})[:\-\s]*/i, '')
+                .trim();
+        }
+
+        function formatEventCategory(component) {
+            const type = normalizeLine(component?.type || '');
+            if (!type) {
+                return 'Trip update';
+            }
+
+            if (/^created$/i.test(type)) {
+                return 'Tour note';
+            }
+
+            return type
+                .replace(/([a-z])([A-Z])/g, '$1 $2')
+                .replace(/\b\w/g, (letter) => letter.toUpperCase());
+        }
+
+        function parseEventContent(event) {
+            const component = event?.component || {};
+            const rawTitle = String(component.title || event?.title || '').trim();
+            const paragraphs = rawTitle
+                .split(/\n\s*\n/)
+                .map((paragraph) => normalizeLine(paragraph.replace(/\n+/g, ' ')))
+                .filter(Boolean);
+            const lines = rawTitle
+                .split('\n')
+                .map((line) => normalizeLine(line))
+                .filter(Boolean);
+            const firstLine = lines[0] || 'Untitled event';
+            const firstLineSegments = firstLine
+                .split(/\s+\/\s+/)
+                .map((segment) => normalizeLine(segment))
+                .filter(Boolean);
+            const headlineSource = firstLineSegments.shift() || firstLine;
+            const headline = stripLeadingTime(headlineSource) || headlineSource;
+            const remainingLines = [...firstLineSegments, ...lines.slice(1)].filter((line) => line !== headline);
+            const highlightCandidates = remainingLines.filter((line) => {
+                if (line.length <= 90) {
+                    return true;
+                }
+
+                return /^(\d{1,2}([:.]\d{2})|ready|kindly|please|bring|meet|departure|return|luggage|breakfast)\b/i.test(line);
+            });
+            const highlights = [];
+
+            for (const line of highlightCandidates) {
+                if (!highlights.includes(line)) {
+                    highlights.push(line);
+                }
+            }
+
+            const note = paragraphs.find((paragraph) => (
+                paragraph !== normalizeLine(firstLine) &&
+                !highlights.some((highlight) => paragraph.includes(highlight))
+            )) || normalizeLine(component.description || '');
+
+            return {
+                headline,
+                highlights,
+                note
+            };
+        }
+
+        function buildGlanceItems(event) {
+            const component = event.component || {};
+            const reservation = component.reservation || {};
+            const items = [
+                { label: 'When', value: formatParisTime(event.date) },
+                { label: 'Focus', value: formatEventCategory(component) }
+            ];
+            const reservationName = normalizeLine(reservation.serviceDetailName || reservation.supplierName || '');
+
+            if (reservationName) {
+                items.push({ label: 'Booked', value: reservationName });
+            } else {
+                items.push({ label: 'Day', value: formatParisShortDate(event.date) });
+            }
+
+            return items;
+        }
+
+        function renderGlanceItems(items) {
+            const idPairs = [
+                ['glanceOneLabel', 'glanceOneValue'],
+                ['glanceTwoLabel', 'glanceTwoValue'],
+                ['glanceThreeLabel', 'glanceThreeValue']
+            ];
+
+            idPairs.forEach(([labelId, valueId], index) => {
+                const item = items[index] || { label: '', value: '' };
+                document.getElementById(labelId).textContent = item.label;
+                document.getElementById(valueId).textContent = item.value;
+            });
+        }
+
+        function renderHighlights(highlights) {
+            const list = document.getElementById('eventHighlights');
+            list.replaceChildren();
+
+            if (!highlights.length) {
+                list.hidden = true;
+                return;
+            }
+
+            const items = highlights.map((highlight) => {
+                const item = document.createElement('li');
+                item.textContent = highlight;
+                return item;
+            });
+
+            list.append(...items);
+            list.hidden = false;
+        }
+
+        function renderEventNote(note) {
+            const noteElement = document.getElementById('eventNote');
+            const normalizedNote = normalizeLine(note);
+
+            if (!normalizedNote) {
+                noteElement.hidden = true;
+                noteElement.textContent = '';
+                return;
+            }
+
+            noteElement.textContent = normalizedNote;
+            noteElement.hidden = false;
+        }
+
         function setCountdownValues(totalMilliseconds) {
             const safeDistance = Math.max(0, totalMilliseconds);
             const days = Math.floor(safeDistance / 86400000);
@@ -1007,6 +1328,8 @@
             const status = document.getElementById('countdownStatus');
             const label = document.getElementById('countdownLabel');
             const meta = document.getElementById('countdownMeta');
+            const eventTime = document.getElementById('eventTime');
+            const eventTimeZone = document.getElementById('eventTimeZone');
 
             renderCurrentDayTheme(now);
 
@@ -1016,15 +1339,30 @@
                 meta.textContent = previewNow
                     ? `Previewing ${formatParisLongDate(previewNow)} in Paris time`
                     : 'The Paris schedule has finished.';
+                eventTime.textContent = '--:--';
+                eventTimeZone.textContent = 'Paris time';
+                renderGlanceItems([
+                    { label: 'When', value: 'Finished' },
+                    { label: 'Focus', value: 'Trip complete' },
+                    { label: 'Day', value: previewNow ? formatParisLongDate(previewNow) : 'Paris itinerary' }
+                ]);
+                renderHighlights([]);
+                renderEventNote('');
                 setCountdownValues(0);
                 return;
             }
 
+            const parsedContent = parseEventContent(nextEvent);
             status.textContent = previewNow ? 'Preview mode' : 'Next event in Paris';
-            label.textContent = nextEvent.title.trim();
+            label.textContent = parsedContent.headline;
             meta.textContent = previewNow
                 ? `${formatParisDateTime(nextEvent.date)} · Paris time · previewing ${formatParisLongDate(previewNow)}`
                 : `${formatParisDateTime(nextEvent.date)} · Paris time`;
+            eventTime.textContent = formatParisTime(nextEvent.date);
+            eventTimeZone.textContent = previewNow ? 'Paris time · preview' : 'Paris time';
+            renderGlanceItems(buildGlanceItems(nextEvent));
+            renderHighlights(parsedContent.highlights);
+            renderEventNote(parsedContent.note);
             setCountdownValues(nextEvent.date.getTime() - now.getTime());
         }
 
@@ -1036,7 +1374,8 @@
                         date,
                         dayIndex,
                         componentIndex,
-                        title: component.title || 'Untitled event'
+                        title: component.title || 'Untitled event',
+                        component
                     } : null;
                 }))
                 .filter(Boolean)
