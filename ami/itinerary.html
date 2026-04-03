@@ -315,6 +315,68 @@
             text-decoration-thickness: 1px;
         }
 
+        .summary-event-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .summary-event-link:hover {
+            text-decoration: none;
+        }
+
+        .summary-event-time {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--muted);
+        }
+
+        .summary-event-title {
+            margin-top: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            line-height: 1.18;
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        .summary-event-highlights {
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .summary-event-highlights li {
+            position: relative;
+            padding-left: 18px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+
+        .summary-event-highlights li::before {
+            content: '';
+            position: absolute;
+            top: 0.72em;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .summary-event-note {
+            margin-top: 14px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--ink);
+        }
+
         .days {
             display: grid;
             gap: 20px;
@@ -437,9 +499,46 @@
         }
 
         .event-title {
-            font-size: 1.04rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.28rem;
+            line-height: 1.18;
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        .event-highlights {
+            display: grid;
+            gap: 8px;
+            margin-top: 12px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .event-highlights li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 0.97rem;
+            line-height: 1.55;
+            color: var(--ink);
+        }
+
+        .event-highlights li::before {
+            content: '';
+            position: absolute;
+            top: 0.72em;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .event-note {
+            margin-top: 12px;
+            font-size: 0.97rem;
             line-height: 1.65;
-            white-space: pre-line;
+            color: var(--muted);
         }
 
         .empty-state {
@@ -697,6 +796,84 @@
             }).format(date);
         }
 
+        function normalizeLine(text) {
+            return (text || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function stripLeadingTime(text) {
+            return text
+                .replace(/^\d{1,2}([:.]\d{2})\s*(am|pm)\b[:\-\s]*/i, '')
+                .replace(/^\d{1,2}([:.]\d{2})[:\-\s]*/i, '')
+                .trim();
+        }
+
+        function parseEventContent(component) {
+            const rawTitle = String(component?.title || '').trim();
+            const paragraphs = rawTitle
+                .split(/\n\s*\n/)
+                .map((paragraph) => normalizeLine(paragraph.replace(/\n+/g, ' ')))
+                .filter(Boolean);
+            const lines = rawTitle
+                .split('\n')
+                .map((line) => normalizeLine(line))
+                .filter(Boolean);
+            const firstLine = lines[0] || 'Untitled event';
+            const firstLineSegments = firstLine
+                .split(/\s+\/\s+/)
+                .map((segment) => normalizeLine(segment))
+                .filter(Boolean);
+            const headlineSource = firstLineSegments.shift() || firstLine;
+            const headline = stripLeadingTime(headlineSource) || headlineSource;
+            const detailCandidates = [...firstLineSegments, ...lines.slice(1)].filter(Boolean);
+            const highlights = [];
+
+            for (const line of detailCandidates) {
+                if (!highlights.includes(line)) {
+                    highlights.push(line);
+                }
+            }
+
+            const noteParagraphs = paragraphs.filter((paragraph) => {
+                return paragraph !== normalizeLine(firstLine) && !highlights.includes(paragraph);
+            });
+
+            return {
+                headline,
+                highlights,
+                noteParagraphs
+            };
+        }
+
+        function renderHighlightsList(items, className) {
+            if (!items.length) {
+                return null;
+            }
+
+            const list = document.createElement('ul');
+            list.className = className;
+
+            items.forEach((itemText) => {
+                const item = document.createElement('li');
+                item.textContent = itemText;
+                list.appendChild(item);
+            });
+
+            return list;
+        }
+
+        function createParagraphs(paragraphs, className) {
+            if (!paragraphs.length) {
+                return [];
+            }
+
+            return paragraphs.map((paragraphText) => {
+                const paragraph = document.createElement('p');
+                paragraph.className = className;
+                paragraph.textContent = paragraphText;
+                return paragraph;
+            });
+        }
+
         function updateParisClock() {
             document.getElementById('parisNow').textContent = `${getFormatter('paris-now', {
                 timeZone: PARIS_TIME_ZONE,
@@ -761,6 +938,7 @@
             const article = document.createElement('article');
             article.className = `event${isNextUp ? ' next-up' : ''}`;
             article.id = eventId;
+            const parsedContent = parseEventContent(component);
 
             const eventDate = parseEventDate(component);
             const timeBadge = document.createElement('div');
@@ -785,10 +963,20 @@
 
             const title = document.createElement('div');
             title.className = 'event-title';
-            title.textContent = component.title || 'Untitled event';
+            title.textContent = parsedContent.headline;
 
             body.appendChild(meta);
             body.appendChild(title);
+
+            const highlights = renderHighlightsList(parsedContent.highlights, 'event-highlights');
+            if (highlights) {
+                body.appendChild(highlights);
+            }
+
+            createParagraphs(parsedContent.noteParagraphs, 'event-note').forEach((paragraph) => {
+                body.appendChild(paragraph);
+            });
+
             article.appendChild(timeBadge);
             article.appendChild(body);
 
@@ -810,10 +998,33 @@
             document.getElementById('eventCount').textContent = `${data.days.reduce((count, day) => count + day.components.length, 0)} scheduled items`;
             const nextEventSummary = document.getElementById('nextEventSummary');
             if (nextEvent && nextEventId) {
+                const nextEventComponent = data.days[nextEvent.dayIndex]?.components?.[nextEvent.componentIndex] || null;
+                const parsedContent = parseEventContent(nextEventComponent || { title: nextEvent.title });
                 nextEventSummary.innerHTML = '';
                 const nextEventLink = document.createElement('a');
+                nextEventLink.className = 'summary-event-link';
                 nextEventLink.href = `#${nextEventId}`;
-                nextEventLink.textContent = `${formatParisDate(nextEvent.date)} at ${formatParisTime(nextEvent.date)}\n${nextEvent.title.trim()}`;
+
+                const eventTime = document.createElement('div');
+                eventTime.className = 'summary-event-time';
+                eventTime.textContent = `${formatParisDate(nextEvent.date)} at ${formatParisTime(nextEvent.date)}`;
+
+                const eventTitle = document.createElement('div');
+                eventTitle.className = 'summary-event-title';
+                eventTitle.textContent = parsedContent.headline;
+
+                nextEventLink.appendChild(eventTime);
+                nextEventLink.appendChild(eventTitle);
+
+                const highlights = renderHighlightsList(parsedContent.highlights, 'summary-event-highlights');
+                if (highlights) {
+                    nextEventLink.appendChild(highlights);
+                }
+
+                createParagraphs(parsedContent.noteParagraphs, 'summary-event-note').forEach((paragraph) => {
+                    nextEventLink.appendChild(paragraph);
+                });
+
                 nextEventLink.addEventListener('click', () => openDayForAnchor(nextEventId));
                 nextEventSummary.appendChild(nextEventLink);
             } else {
