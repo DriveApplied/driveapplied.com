@@ -6,31 +6,128 @@
   <title>Paris History: April Facts</title>
   <meta name="description" content="Daily Paris history facts for April 2–13" />
   <meta name="theme-color" content="#1a1a2e" />
+  <script>
+    (() => {
+      const storedTheme = sessionStorage.getItem('driveapplied-ami-theme');
+      if (!storedTheme) {
+        return;
+      }
+
+      try {
+        const theme = JSON.parse(storedTheme);
+        if (theme.image) {
+          document.documentElement.style.setProperty('--theme-background-image', `url('${theme.image}')`);
+        }
+        if (theme.position) {
+          document.documentElement.style.setProperty('--theme-background-position', theme.position);
+        }
+        if (theme.overlay) {
+          document.documentElement.style.setProperty('--theme-overlay', theme.overlay);
+        }
+      } catch (error) {
+        sessionStorage.removeItem('driveapplied-ami-theme');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --theme-background-image: url('assets/paris-default.jpg');
+      --theme-background-position: center 18%;
+      --theme-overlay: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; min-height: 100%; }
     body {
       font-family: 'Josefin Sans', sans-serif;
-      background: linear-gradient(135deg, #2d1b0e 0%, #1a1a2e 50%, #0e0e1e 100%);
+      background:
+        radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 36%),
+        linear-gradient(140deg, #27160d 0%, #1a1a2e 52%, #0d101b 100%);
       color: #333;
       padding: 20px;
       min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
-    .container {
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: var(--theme-background-image);
+      background-position: var(--theme-background-position);
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--theme-overlay);
+      z-index: 1;
+    }
+    .page-shell {
       max-width: 900px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .container {
       background: rgba(255,255,255,0.97);
       border-radius: 16px;
       padding: 40px 30px 80px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
+    .page-topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
     h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #8B7355; margin-bottom: 10px; text-align:center; }
     .subtitle { text-align:center; color:#666; margin-bottom:30px; }
-    .back-link { display:inline-block; margin-bottom:20px; color:#8B7355; text-decoration:none; font-weight:500; }
-    .back-link:hover { color:#d4a373; }
+    .back-link {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-family: "Josefin Sans", sans-serif;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(245, 241, 232, 0.18);
+      background:rgba(12, 12, 20, 0.34);
+      color:rgba(249, 246, 240, 0.96);
+      text-decoration:none;
+      font-weight:700;
+      backdrop-filter: blur(12px);
+    }
+    .back-link:hover { background:rgba(12, 12, 20, 0.46); }
+    .paris-clock {
+      display:inline-flex;
+      align-items:center;
+      font-family: "Josefin Sans", sans-serif;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(245, 241, 232, 0.16);
+      background:rgba(12, 12, 20, 0.28);
+      color:rgba(249, 246, 240, 0.92);
+      font-size:0.86rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      backdrop-filter: blur(12px);
+    }
+    .theme-footer {
+      margin-top:18px;
+      text-align:center;
+      color:rgba(249, 246, 240, 0.92);
+      font-size:0.86rem;
+      letter-spacing:0.04em;
+    }
+    .theme-footer[hidden] { display:none; }
     .day-box {
       border: 1px solid #e0d5c7;
       border-radius: 12px;
@@ -48,15 +145,21 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back-link">← Back to Countdown</a>
-    <h1>Paris History: April 2–13</h1>
-    <div class="subtitle">Daily history spotlight around your travel dates</div>
-    <div id="dayFact" class="day-box">
-      <div class="day-title">Loading...</div>
-      <div class="day-text"></div>
+  <div class="page-shell">
+    <div class="page-topbar">
+      <a href="index.html" class="back-link">← Back to Countdown</a>
+      <div id="parisNow" class="paris-clock">Paris time</div>
     </div>
-    <div id="dayInfo" class="info"></div>
+    <div class="container">
+      <h1>Paris History: April 2–13</h1>
+      <div class="subtitle">Daily history spotlight around your travel dates</div>
+      <div id="dayFact" class="day-box">
+        <div class="day-title">Loading...</div>
+        <div class="day-text"></div>
+      </div>
+      <div id="dayInfo" class="info"></div>
+    </div>
+    <p id="themeContext" class="theme-footer" hidden></p>
   </div>
   <script>
     const facts = {
@@ -83,6 +186,38 @@
     const text = dayBox.querySelector('.day-text');
     const dayInfo = document.getElementById('dayInfo');
 
+    function updateThemeFooter() {
+      const themeContext = document.getElementById('themeContext');
+      const storedTheme = sessionStorage.getItem('driveapplied-ami-theme');
+
+      if (!storedTheme) {
+        themeContext.hidden = true;
+        return;
+      }
+
+      try {
+        const theme = JSON.parse(storedTheme);
+        if (!theme.label) {
+          themeContext.hidden = true;
+          return;
+        }
+
+        themeContext.textContent = `Today's theme: ${theme.label}`;
+        themeContext.hidden = false;
+      } catch (error) {
+        themeContext.hidden = true;
+      }
+    }
+
+    function updateParisClock() {
+      document.getElementById('parisNow').textContent = `${new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Europe/Paris',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date())} Paris time`;
+    }
+
     function setDayFact(day) {
       if (month === 4 && facts[day]) {
         title.textContent = `April ${day}`;
@@ -103,6 +238,9 @@
       }
     }
 
+    updateThemeFooter();
+    updateParisClock();
+    setInterval(updateParisClock, 30000);
     setDayFact(day);
   </script>
 </body>

@@ -7,12 +7,38 @@
     <title>Paris Itinerary</title>
     <meta name="description" content="Day-by-day Paris itinerary powered by itinerary.json.">
     <meta name="robots" content="noindex, nofollow, noarchive">
+    <script>
+        (() => {
+            const storedTheme = sessionStorage.getItem('driveapplied-ami-theme');
+            if (!storedTheme) {
+                return;
+            }
+
+            try {
+                const theme = JSON.parse(storedTheme);
+                if (theme.image) {
+                    document.documentElement.style.setProperty('--theme-background-image', `url('${theme.image}')`);
+                }
+                if (theme.position) {
+                    document.documentElement.style.setProperty('--theme-background-position', theme.position);
+                }
+                if (theme.overlay) {
+                    document.documentElement.style.setProperty('--theme-overlay', theme.overlay);
+                }
+            } catch (error) {
+                sessionStorage.removeItem('driveapplied-ami-theme');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Josefin+Sans:wght@300;400;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#10212f">
     <style>
         :root {
+            --theme-background-image: url('assets/paris-default.jpg');
+            --theme-background-position: center 18%;
+            --theme-overlay: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
             --bg: #f3ecdf;
             --surface: rgba(255, 251, 244, 0.88);
             --surface-strong: #fffaf1;
@@ -34,9 +60,30 @@
             font-family: 'Manrope', sans-serif;
             color: var(--ink);
             background:
-                radial-gradient(circle at top left, rgba(173, 107, 45, 0.18), transparent 28%),
-                linear-gradient(180deg, #f5ecdd 0%, #efe3d2 50%, #eadbc8 100%);
+                radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 36%),
+                linear-gradient(140deg, #27160d 0%, #1a1a2e 52%, #0d101b 100%);
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: var(--theme-background-image);
+            background-position: var(--theme-background-position);
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: var(--theme-overlay);
+            z-index: 1;
         }
 
         body.locked {
@@ -47,6 +94,8 @@
             max-width: 1120px;
             margin: 0 auto;
             padding: 32px 20px 56px;
+            position: relative;
+            z-index: 2;
         }
 
         .shell.is-hidden {
@@ -144,9 +193,51 @@
         }
 
         .topbar a {
-            color: var(--accent-deep);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "Josefin Sans", sans-serif;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 241, 232, 0.18);
+            background: rgba(12, 12, 20, 0.34);
+            color: rgba(249, 246, 240, 0.96);
             text-decoration: none;
             font-weight: 700;
+            backdrop-filter: blur(12px);
+        }
+
+        .topbar a:hover {
+            background: rgba(12, 12, 20, 0.46);
+        }
+
+        #parisNow {
+            display: inline-flex;
+            align-items: center;
+            font-family: "Josefin Sans", sans-serif;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 241, 232, 0.16);
+            background: rgba(12, 12, 20, 0.28);
+            color: rgba(249, 246, 240, 0.92);
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(12px);
+        }
+
+        .theme-footer {
+            margin-top: 18px;
+            text-align: center;
+            color: rgba(249, 246, 240, 0.92);
+            font-family: "Josefin Sans", sans-serif;
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
+        .theme-footer[hidden] {
+            display: none;
         }
 
         .hero {
@@ -403,7 +494,7 @@
 
     <div id="appShell" class="shell is-hidden">
         <div class="topbar">
-            <a href="index.html">Back to Countdown</a>
+            <a href="index.html">← Back to Countdown</a>
             <span id="parisNow">Paris time</span>
         </div>
 
@@ -429,6 +520,7 @@
 
         <section id="loadingState" class="loading">Loading itinerary details...</section>
         <section id="days" class="days" hidden></section>
+        <p id="themeContext" class="theme-footer" hidden></p>
     </div>
 
     <script>
@@ -599,6 +691,29 @@
                 hour: 'numeric',
                 minute: '2-digit'
             }).format(new Date())} Paris time`;
+        }
+
+        function updateThemeFooter() {
+            const themeContext = document.getElementById('themeContext');
+            const storedTheme = sessionStorage.getItem('driveapplied-ami-theme');
+
+            if (!storedTheme) {
+                themeContext.hidden = true;
+                return;
+            }
+
+            try {
+                const theme = JSON.parse(storedTheme);
+                if (!theme.label) {
+                    themeContext.hidden = true;
+                    return;
+                }
+
+                themeContext.textContent = `Today's theme: ${theme.label}`;
+                themeContext.hidden = false;
+            } catch (error) {
+                themeContext.hidden = true;
+            }
         }
 
         function flattenTimedEvents(days) {
@@ -776,6 +891,7 @@
         }
 
         initializeGate();
+        updateThemeFooter();
         updateParisClock();
         setInterval(updateParisClock, 30000);
         loadItinerary();

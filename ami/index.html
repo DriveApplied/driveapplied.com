@@ -13,6 +13,35 @@
     <link rel="icon" type="image/png" href="/assets/paris-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/paris-icon.png">
     <meta name="theme-color" content="#1a1a2e">
+    <script>
+        (() => {
+            const storedTheme = sessionStorage.getItem('driveapplied-ami-theme');
+            if (!storedTheme) {
+                return;
+            }
+
+            try {
+                const theme = JSON.parse(storedTheme);
+                if (theme.image) {
+                    document.documentElement.style.setProperty('--theme-background-image', `url('${theme.image}')`);
+                }
+                if (theme.position) {
+                    document.documentElement.style.setProperty('--theme-background-position', theme.position);
+                }
+                if (theme.filter) {
+                    document.documentElement.style.setProperty('--theme-image-filter', theme.filter);
+                }
+                if (theme.opacity) {
+                    document.documentElement.style.setProperty('--theme-image-opacity', theme.opacity);
+                }
+                if (theme.overlay) {
+                    document.documentElement.style.setProperty('--theme-overlay', theme.overlay);
+                }
+            } catch (error) {
+                sessionStorage.removeItem('driveapplied-ami-theme');
+            }
+        })();
+    </script>
     <style>
         :root {
             --cream: #f5f1e8;
@@ -179,6 +208,29 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: rgba(245, 241, 232, 0.88);
+        }
+
+        .page-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .page-clock {
+            display: inline-flex;
+            align-items: center;
+            margin-left: auto;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 241, 232, 0.18);
+            background: rgba(12, 12, 20, 0.34);
+            color: rgba(249, 246, 240, 0.94);
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(12px);
         }
 
         h1 {
@@ -581,7 +633,10 @@
     </div>
 
     <main id="appShell" class="container is-hidden">
-        <div class="eyebrow">Paris Time Live Sync</div>
+        <div class="page-topbar">
+            <div class="eyebrow">Paris Time Live Sync</div>
+            <div id="parisNow" class="page-clock">Paris time</div>
+        </div>
         <h1 id="heroTitle">Paris Adventure</h1>
         <p class="lede">The countdown follows the next scheduled itinerary event in Paris, using the live data from the trip plan.</p>
         <p id="themeHint" class="theme-hint">Today's theme: Paris Icons</p>
@@ -666,6 +721,7 @@
         const ACCESS_HASH_URL = 'n7v4k2p9x8q1.json';
         const ACCESS_STORAGE_KEY = 'driveapplied-ami-itinerary-unlocked';
         const TOURIST_NAME_STORAGE_KEY = 'driveapplied-ami-tourist-name';
+        const THEME_STORAGE_KEY = 'driveapplied-ami-theme';
         const ITINERARY_DATA_URL = 'r4m8t2k9v1q7d6p3.json';
         const PREVIEW_DATE_QUERY_PARAM = 'd';
         const DEFAULT_THEME_IMAGE = 'assets/paris-default.jpg';
@@ -1015,6 +1071,15 @@
             document.documentElement.style.setProperty('--theme-image-filter', theme.filter);
             document.documentElement.style.setProperty('--theme-image-opacity', theme.opacity);
             document.documentElement.style.setProperty('--theme-overlay', theme.overlay);
+            sessionStorage.setItem(THEME_STORAGE_KEY, JSON.stringify({
+                themeId,
+                image: theme.image,
+                position: theme.position,
+                filter: theme.filter,
+                opacity: theme.opacity,
+                overlay: theme.overlay,
+                label: theme.label
+            }));
             const previewPrefix = previewNow ? `Previewing ${formatParisLongDate(previewNow)} · ` : '';
             document.getElementById('themeHint').textContent = `${previewPrefix}Today's theme: ${theme.label}`;
         }
@@ -1168,6 +1233,15 @@
                 month: 'short',
                 day: 'numeric'
             }).format(date);
+        }
+
+        function updateParisClock() {
+            document.getElementById('parisNow').textContent = `${getFormatter('paris-now', {
+                timeZone: PARIS_TIME_ZONE,
+                weekday: 'short',
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(new Date())} Paris time`;
         }
 
         function normalizeLine(text) {
@@ -1412,6 +1486,8 @@
 
         initializeTouristName();
         initializePrivateAccess();
+        updateParisClock();
+        setInterval(updateParisClock, 30000);
         loadItinerary();
     </script>
 </body>
