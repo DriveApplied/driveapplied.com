@@ -411,15 +411,18 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
             max-width: 580px;
-            margin: 28px 0 0;
+            margin: 28px auto 0;
         }
 
         .countdown-item {
+            display: grid;
+            justify-items: center;
             padding: 18px 12px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.16);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+            text-align: center;
         }
 
         .countdown-number {
