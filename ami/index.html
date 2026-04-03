@@ -487,6 +487,10 @@
             backdrop-filter: blur(12px);
         }
 
+        .private-access[hidden] {
+            display: none;
+        }
+
         .private-access-title {
             font-size: 0.8rem;
             letter-spacing: 0.14em;
@@ -695,7 +699,7 @@
         <div id="farewellTranslation" class="translation">"Have a wonderful adventure!"</div>
         <a id="changeNameLink" class="change-name-link" href="#">Change your name</a>
 
-        <section class="private-access" aria-label="Private access">
+        <section id="privateAccessSection" class="private-access" aria-label="Private access">
             <p class="private-access-title">Private Access</p>
             <p class="private-access-copy">If you have the shared passphrase, unlock the direct itinerary link for this browser tab.</p>
             <form id="privateAccessForm" class="private-access-form">
@@ -937,7 +941,7 @@
 
         function revealItineraryLink() {
             document.getElementById('itineraryLink').classList.remove('is-hidden');
-            setPrivateAccessStatus('Private itinerary unlocked for this tab.');
+            document.getElementById('privateAccessSection').hidden = true;
         }
 
         async function sha256Hex(value) {
