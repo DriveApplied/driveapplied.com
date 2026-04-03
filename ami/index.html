@@ -263,6 +263,20 @@
             color: rgba(245, 241, 232, 0.82);
         }
 
+        .change-name-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: rgba(245, 241, 232, 0.72);
+            font-size: 0.92rem;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+        }
+
+        .change-name-link:hover {
+            color: rgba(245, 241, 232, 0.94);
+        }
+
         .resources {
             display: flex;
             flex-wrap: wrap;
@@ -445,6 +459,7 @@
 
         <div id="farewellMessage" class="message">Bon Voyage!</div>
         <div id="farewellTranslation" class="translation">"Have a wonderful adventure!"</div>
+        <a id="changeNameLink" class="change-name-link" href="#">Change your name</a>
 
         <section class="private-access" aria-label="Private access">
             <p class="private-access-title">Private Access</p>
@@ -496,11 +511,32 @@
             document.getElementById('appShell').classList.remove('is-hidden');
         }
 
+        function reopenNameGate() {
+            const storedName = localStorage.getItem(TOURIST_NAME_STORAGE_KEY) || '';
+            const input = document.getElementById('touristNameInput');
+            const status = document.getElementById('nameGateStatus');
+            document.body.classList.add('locked');
+            document.getElementById('nameGate').hidden = false;
+            document.getElementById('appShell').classList.add('is-hidden');
+            input.value = storedName;
+            status.textContent = '';
+            window.requestAnimationFrame(() => {
+                input.focus();
+                input.select();
+            });
+        }
+
         function initializeTouristName() {
             const storedName = localStorage.getItem(TOURIST_NAME_STORAGE_KEY);
             const form = document.getElementById('nameGateForm');
             const input = document.getElementById('touristNameInput');
             const status = document.getElementById('nameGateStatus');
+            const changeNameLink = document.getElementById('changeNameLink');
+
+            changeNameLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                reopenNameGate();
+            });
 
             if (storedName) {
                 applyTouristName(storedName);
