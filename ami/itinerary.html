@@ -834,7 +834,19 @@
             }
 
             const noteParagraphs = paragraphs.filter((paragraph) => {
-                return paragraph !== normalizeLine(firstLine) && !highlights.includes(paragraph);
+                if (!paragraph || paragraph === normalizeLine(firstLine) || highlights.includes(paragraph)) {
+                    return false;
+                }
+
+                if (highlights.some((highlight) => paragraph.includes(highlight))) {
+                    return false;
+                }
+
+                const paragraphWithoutHeadline = paragraph.startsWith(headline)
+                    ? normalizeLine(paragraph.slice(headline.length))
+                    : paragraph;
+
+                return paragraphWithoutHeadline.length > 0;
             });
 
             return {
