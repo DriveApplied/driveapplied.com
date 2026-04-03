@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Molly's Paris Adventure Countdown</title>
+    <title>Paris Adventure Countdown</title>
     <meta name="description" content="Live countdown to the next Paris itinerary event.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +41,10 @@
             overflow-x: hidden;
         }
 
+        body.locked {
+            overflow: hidden;
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -66,6 +70,92 @@
             margin: 0 auto;
             padding: 56px 20px 80px;
             text-align: center;
+        }
+
+        .container.is-hidden {
+            visibility: hidden;
+        }
+
+        .name-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(10, 12, 20, 0.24);
+            backdrop-filter: blur(12px);
+        }
+
+        .name-gate[hidden] {
+            display: none;
+        }
+
+        .name-gate-card {
+            width: min(100%, 460px);
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: linear-gradient(180deg, rgba(24, 18, 26, 0.8), rgba(11, 13, 22, 0.78));
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.28);
+            text-align: center;
+        }
+
+        .name-gate-title {
+            margin-top: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--cream);
+            line-height: 1.15;
+        }
+
+        .name-gate-copy {
+            margin-top: 12px;
+            color: rgba(245, 241, 232, 0.84);
+            line-height: 1.55;
+        }
+
+        .name-gate-form {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .name-gate-form input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--cream);
+            font: inherit;
+            text-align: center;
+        }
+
+        .name-gate-form input::placeholder {
+            color: rgba(245, 241, 232, 0.52);
+        }
+
+        .name-gate-form button {
+            padding: 14px 18px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.92);
+            color: #18130d;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .name-gate-form button:hover {
+            background: rgba(212, 175, 55, 1);
+        }
+
+        .name-gate-status {
+            min-height: 1.25em;
+            color: rgba(245, 241, 232, 0.8);
+            font-size: 0.95rem;
         }
 
         .eyebrow {
@@ -314,9 +404,22 @@
 </head>
 
 <body>
-    <main class="container">
+    <div id="nameGate" class="name-gate">
+        <div class="name-gate-card">
+            <div class="eyebrow">Paris Time Live Sync</div>
+            <h2 class="name-gate-title">Enter your tourist name</h2>
+            <p class="name-gate-copy">Set the name for this trip page. It will be stored in this browser and used throughout the landing page.</p>
+            <form id="nameGateForm" class="name-gate-form">
+                <input id="touristNameInput" name="touristName" type="text" placeholder="Your name" maxlength="40" required>
+                <button type="submit">Start the trip</button>
+                <p id="nameGateStatus" class="name-gate-status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+
+    <main id="appShell" class="container is-hidden">
         <div class="eyebrow">Paris Time Live Sync</div>
-        <h1>Molly's Paris Adventure</h1>
+        <h1 id="heroTitle">Paris Adventure</h1>
         <p class="lede">The countdown follows the next scheduled itinerary event in Paris, using the live data from the trip plan.</p>
 
         <section class="hero-card" aria-live="polite">
@@ -340,8 +443,8 @@
             </div>
         </section>
 
-        <div class="message">Bon Voyage, Molly!</div>
-        <div class="translation">"Have a wonderful adventure, Molly!"</div>
+        <div id="farewellMessage" class="message">Bon Voyage!</div>
+        <div id="farewellTranslation" class="translation">"Have a wonderful adventure!"</div>
 
         <section class="private-access" aria-label="Private access">
             <p class="private-access-title">Private Access</p>
@@ -371,8 +474,59 @@
         const PARIS_TIME_ZONE = 'Europe/Paris';
         const ACCESS_HASH_URL = 'n7v4k2p9x8q1.json';
         const ACCESS_STORAGE_KEY = 'driveapplied-ami-itinerary-unlocked';
+        const TOURIST_NAME_STORAGE_KEY = 'driveapplied-ami-tourist-name';
         const formatterCache = new Map();
         let timedEvents = [];
+
+        function normalizeTouristName(value) {
+            return value.replace(/\s+/g, ' ').trim();
+        }
+
+        function applyTouristName(name) {
+            const safeName = normalizeTouristName(name) || 'Paris';
+            document.title = `${safeName}'s Paris Adventure Countdown`;
+            document.getElementById('heroTitle').textContent = `${safeName}'s Paris Adventure`;
+            document.getElementById('farewellMessage').textContent = `Bon Voyage, ${safeName}!`;
+            document.getElementById('farewellTranslation').textContent = `"Have a wonderful adventure, ${safeName}!"`;
+        }
+
+        function unlockNameGate() {
+            document.body.classList.remove('locked');
+            document.getElementById('nameGate').hidden = true;
+            document.getElementById('appShell').classList.remove('is-hidden');
+        }
+
+        function initializeTouristName() {
+            const storedName = localStorage.getItem(TOURIST_NAME_STORAGE_KEY);
+            const form = document.getElementById('nameGateForm');
+            const input = document.getElementById('touristNameInput');
+            const status = document.getElementById('nameGateStatus');
+
+            if (storedName) {
+                applyTouristName(storedName);
+                unlockNameGate();
+                return;
+            }
+
+            document.body.classList.add('locked');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const submittedName = normalizeTouristName(input.value);
+                if (!submittedName) {
+                    status.textContent = 'Please enter a name first.';
+                    input.focus();
+                    return;
+                }
+
+                localStorage.setItem(TOURIST_NAME_STORAGE_KEY, submittedName);
+                applyTouristName(submittedName);
+                status.textContent = '';
+                unlockNameGate();
+            });
+
+            window.requestAnimationFrame(() => input.focus());
+        }
 
         function setPrivateAccessStatus(message, isError = false) {
             const status = document.getElementById('privateAccessStatus');
@@ -581,6 +735,7 @@
             }
         }
 
+        initializeTouristName();
         initializePrivateAccess();
         loadItinerary();
     </script>
