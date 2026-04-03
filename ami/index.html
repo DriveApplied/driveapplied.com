@@ -5,273 +5,584 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Molly's Paris Adventure Countdown</title>
-    <meta name="description" content="Countdown to Molly's exciting trip to Paris!">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Live countdown to the next Paris itinerary event.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="/assets/paris-icon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/paris-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/paris-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/paris-icon.png">
     <meta name="theme-color" content="#1a1a2e">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --cream: #f5f1e8;
+            --gold: #d4af37;
+            --ink: #f9f6f0;
         }
 
-        html, body {
-            width: 100%;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
             min-height: 100%;
-            overflow-y: auto;
         }
 
         body {
             font-family: 'Josefin Sans', sans-serif;
-            background: linear-gradient(135deg, #2d1b0e 0%, #1a1a2e 50%, #0e0e1e 100%);
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 36%),
+                linear-gradient(140deg, #27160d 0%, #1a1a2e 52%, #0d101b 100%);
             position: relative;
-            display: block;
+            overflow-x: hidden;
         }
 
-        /* Sepia-toned Paris background */
         body::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&h=900&fit=crop') center 15% / cover no-repeat;
-            filter: brightness(0.85) contrast(1.1);
-            z-index: 1;
+            position: fixed;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&h=900&fit=crop') center 18% / cover no-repeat;
+            filter: brightness(0.92) contrast(1.04);
+            opacity: 0.58;
+            z-index: 0;
         }
 
-        @media (max-width: 900px) {
-            body::before {
-                background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&h=1800&fit=crop') center 20% / cover no-repeat;
-            }
-        }
-
-        @media (max-width: 600px) {
-            body::before {
-                background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&h=1800&fit=crop') center 20% / cover no-repeat;
-            }
-        }
-
-        /* Overlay for readability */
         body::after {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(30, 15, 5, 0.4);
-            z-index: 2;
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
+            z-index: 1;
         }
 
         .container {
             position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 900px;
-            width: min(100%, 900px);
+            z-index: 2;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
-            padding-top: 80px;
-            padding-bottom: 80px;
+            padding: 56px 20px 80px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 1px solid rgba(245, 241, 232, 0.18);
+            border-radius: 999px;
+            background: rgba(15, 13, 24, 0.35);
+            backdrop-filter: blur(12px);
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 232, 0.88);
         }
 
         h1 {
+            margin-top: 24px;
             font-family: 'Poiret One', sans-serif;
-            font-size: clamp(2.5rem, 9vw, 5rem);
-            color: #f5f1e8;
-            margin-bottom: 30px;
-            margin-top: 30px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 4px;
+            font-size: clamp(2.8rem, 8vw, 5.6rem);
+            letter-spacing: 0.08em;
+            text-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .lede {
+            max-width: 650px;
+            margin: 16px auto 0;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            color: rgba(245, 241, 232, 0.86);
+        }
+
+        .hero-card {
+            margin-top: 36px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(24, 18, 26, 0.76), rgba(11, 13, 22, 0.72));
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.28);
+        }
+
+        .status {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.78rem;
+        }
+
+        .countdown-title {
+            margin-top: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+            line-height: 1.2;
+            white-space: pre-line;
+        }
+
+        .countdown-meta {
+            margin-top: 12px;
+            font-size: 1rem;
+            color: rgba(245, 241, 232, 0.8);
         }
 
         .countdown {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            max-width: 580px;
+            margin: 30px auto 0;
         }
 
         .countdown-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 12px;
-            padding: 20px 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 18px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.11);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
         }
 
         .countdown-number {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 700;
-            color: #d4af37;
             font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
             line-height: 1;
+            color: var(--gold);
         }
 
         .countdown-label {
-            font-size: 0.85rem;
-            color: #f5f1e8;
             margin-top: 10px;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.9;
+            color: rgba(245, 241, 232, 0.74);
         }
 
-        .french-message {
+        .message {
+            margin-top: 36px;
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: #d4af37;
-            margin: 40px 0 20px;
             font-style: italic;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
 
-        .french-translation {
-            font-size: 0.95rem;
-            color: #e8e4d8;
-            margin-bottom: 40px;
+        .translation {
+            margin-top: 10px;
+            color: rgba(245, 241, 232, 0.82);
         }
 
         .resources {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            max-width: 700px;
-            margin: 40px auto;
+            gap: 14px;
+            margin: 36px auto 0;
+            max-width: 760px;
+        }
+
+        .private-access {
+            max-width: 520px;
+            margin: 28px auto 0;
+            padding: 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(10, 10, 18, 0.32);
+            backdrop-filter: blur(12px);
+        }
+
+        .private-access-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(245, 241, 232, 0.76);
+        }
+
+        .private-access-copy {
+            margin-top: 10px;
+            color: rgba(245, 241, 232, 0.84);
+            line-height: 1.5;
+        }
+
+        .private-access-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .private-access-form input {
+            width: 100%;
+            min-width: 0;
+            padding: 13px 15px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--cream);
+            font: inherit;
+        }
+
+        .private-access-form input::placeholder {
+            color: rgba(245, 241, 232, 0.52);
+        }
+
+        .private-access-form button {
+            padding: 13px 18px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.9);
+            color: #18130d;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .private-access-form button:hover {
+            background: rgba(212, 175, 55, 1);
+        }
+
+        .private-access-status {
+            min-height: 1.25em;
+            margin-top: 10px;
+            color: rgba(245, 241, 232, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .private-access-status.is-error {
+            color: #ffd0d0;
+        }
+
+        .resource-link.is-hidden {
+            display: none;
         }
 
         .resource-link {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            flex: 0 1 200px;
             min-height: 48px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.6);
-            color: #d4af37;
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 175, 55, 0.52);
+            background: rgba(0, 0, 0, 0.36);
+            color: var(--cream);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
         }
 
         .resource-link:hover {
-            background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(212, 175, 55, 0.8);
             transform: translateY(-2px);
+            background: rgba(212, 175, 55, 0.14);
+            border-color: rgba(212, 175, 55, 0.86);
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 52px;
             font-size: 0.85rem;
-            color: #c9bfb3;
-            opacity: 0.8;
+            color: rgba(245, 241, 232, 0.68);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 720px) {
+            .container {
+                padding-top: 40px;
+            }
+
+            .hero-card {
+                padding: 22px 18px;
+            }
+
             .countdown {
                 gap: 12px;
-                margin: 30px 0;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .private-access-form {
+                grid-template-columns: 1fr;
             }
 
             .countdown-item {
-                padding: 15px 10px;
+                padding: 16px 8px;
             }
 
-            h1 {
-                margin-bottom: 20px;
-                margin-top: 15px;
-            }
-
-            .container {
-                padding-top: 40px;
+            .resource-link {
+                width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <main class="container">
+        <div class="eyebrow">Paris Time Live Sync</div>
         <h1>Molly's Paris Adventure</h1>
-        <p id="countdownLabel" style="font-size:1.1rem; color:#f5f1e8; margin-top:10px; margin-bottom:10px;">Depart Newark for Paris</p>
+        <p class="lede">The countdown follows the next scheduled itinerary event in Paris, using the live data from the trip plan.</p>
 
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">0</div>
-                <div class="countdown-label">Days</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">0</div>
-                <div class="countdown-label">Hours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">0</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-        </div>
+        <section class="hero-card" aria-live="polite">
+            <p class="status" id="countdownStatus">Loading itinerary</p>
+            <p class="countdown-title" id="countdownLabel">Fetching the next event from Paris...</p>
+            <p class="countdown-meta" id="countdownMeta">Europe/Paris</p>
 
-        <div class="french-message">Bon Voyage, Molly!</div>
-        <div class="french-translation">"Have a wonderful adventure, Molly!"</div>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+            </div>
+        </section>
 
-        <div class="resources">
-            <a href="important.html" class="resource-link">⚠️ Important</a>
+        <div class="message">Bon Voyage, Molly!</div>
+        <div class="translation">"Have a wonderful adventure, Molly!"</div>
+
+        <section class="private-access" aria-label="Private access">
+            <p class="private-access-title">Private Access</p>
+            <p class="private-access-copy">If you have the shared passphrase, unlock the direct itinerary link for this browser tab.</p>
+            <form id="privateAccessForm" class="private-access-form">
+                <input id="privateAccessCode" name="privateAccessCode" type="password" autocomplete="current-password" placeholder="Enter passphrase" required>
+                <button type="submit">Unlock</button>
+            </form>
+            <p id="privateAccessStatus" class="private-access-status" aria-live="polite"></p>
+        </section>
+
+        <nav class="resources" aria-label="Trip resources">
+            <a id="itineraryLink" href="itinerary.html" class="resource-link is-hidden">Open Itinerary</a>
+            <a href="important.html" class="resource-link">Important</a>
             <a href="french.html" class="resource-link">French Phrasebook</a>
             <a href="history.html" class="resource-link">Paris History</a>
-            <a href="https://www.timeout.com/paris" target="_blank" class="resource-link">Things to Do</a>
-            <a href="https://www.theartnewspaper.com/" target="_blank" class="resource-link">Culture & News</a>
-            <a href="https://www.parisinsiderguide.com/" target="_blank" class="resource-link">Local Guides</a>
-            <a href="https://www.paris.fr/" target="_blank" class="resource-link">Paris Official</a>
-        </div>
+            <a href="https://www.timeout.com/paris" target="_blank" rel="noreferrer" class="resource-link">Things to Do</a>
+            <a href="https://www.theartnewspaper.com/" target="_blank" rel="noreferrer" class="resource-link">Culture & News</a>
+            <a href="https://www.parisinsiderguide.com/" target="_blank" rel="noreferrer" class="resource-link">Local Guides</a>
+            <a href="https://www.paris.fr/" target="_blank" rel="noreferrer" class="resource-link">Paris Official</a>
+        </nav>
 
-        <div class="footer">
-            © 2026 Drive Applied, LLC
-        </div>
-    </div>
+        <div class="footer">© 2026 Drive Applied, LLC</div>
+    </main>
 
     <script>
-        function updateCountdown() {
-            // Set target time: 4:30 PM EST on April 2, 2026
-            // EST is UTC-5, so convert to local timezone
-            const targetDate = new Date('2026-04-02T23:00:00-04:00').getTime();
-            
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        const PARIS_TIME_ZONE = 'Europe/Paris';
+        const ACCESS_HASH_URL = 'n7v4k2p9x8q1.json';
+        const ACCESS_STORAGE_KEY = 'driveapplied-ami-itinerary-unlocked';
+        const formatterCache = new Map();
+        let timedEvents = [];
 
-            if (distance < 0) {
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
+        function setPrivateAccessStatus(message, isError = false) {
+            const status = document.getElementById('privateAccessStatus');
+            status.textContent = message;
+            status.classList.toggle('is-error', isError);
+        }
+
+        function revealItineraryLink() {
+            document.getElementById('itineraryLink').classList.remove('is-hidden');
+            setPrivateAccessStatus('Private itinerary unlocked for this tab.');
+        }
+
+        async function sha256Hex(value) {
+            const inputBytes = new TextEncoder().encode(value);
+            const digest = await crypto.subtle.digest('SHA-256', inputBytes);
+            return Array.from(new Uint8Array(digest))
+                .map((byte) => byte.toString(16).padStart(2, '0'))
+                .join('');
+        }
+
+        async function getExpectedAccessHash() {
+            const response = await fetch(ACCESS_HASH_URL, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`Unable to load access hash (${response.status})`);
+            }
+
+            const payload = await response.json();
+            if (!payload || typeof payload.hash !== 'string' || !payload.hash.trim()) {
+                throw new Error('Access hash payload is invalid');
+            }
+
+            return payload.hash;
+        }
+
+        async function initializePrivateAccess() {
+            if (sessionStorage.getItem(ACCESS_STORAGE_KEY) === 'true') {
+                revealItineraryLink();
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const form = document.getElementById('privateAccessForm');
+            const input = document.getElementById('privateAccessCode');
+            let expectedHash;
 
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
+            try {
+                setPrivateAccessStatus('Preparing private access check...');
+                expectedHash = await getExpectedAccessHash();
+                setPrivateAccessStatus('');
+            } catch (error) {
+                setPrivateAccessStatus(error.message, true);
+                return;
+            }
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                setPrivateAccessStatus('Checking passphrase...');
+
+                const submittedHash = await sha256Hex(input.value.trim());
+                if (submittedHash === expectedHash) {
+                    sessionStorage.setItem(ACCESS_STORAGE_KEY, 'true');
+                    revealItineraryLink();
+                    input.value = '';
+                    return;
+                }
+
+                setPrivateAccessStatus('That passphrase is not correct.', true);
+                input.select();
+            });
         }
 
-        // Update countdown immediately and then every minute
-        updateCountdown();
-        setInterval(updateCountdown, 60000);
+        function getFormatter(key, options) {
+            if (!formatterCache.has(key)) {
+                formatterCache.set(key, new Intl.DateTimeFormat('en-US', options));
+            }
+            return formatterCache.get(key);
+        }
+
+        function getTimeZoneOffset(date, timeZone) {
+            const parts = getFormatter(`offset-${timeZone}`, {
+                timeZone,
+                hourCycle: 'h23',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            }).formatToParts(date);
+
+            const map = {};
+            for (const part of parts) {
+                if (part.type !== 'literal') {
+                    map[part.type] = part.value;
+                }
+            }
+
+            const zonedAsUtc = Date.UTC(
+                Number(map.year),
+                Number(map.month) - 1,
+                Number(map.day),
+                Number(map.hour),
+                Number(map.minute),
+                Number(map.second)
+            );
+
+            return zonedAsUtc - date.getTime();
+        }
+
+        function zonedDateTimeToUtc(year, month, day, hour, minute, second, timeZone) {
+            const utcGuess = Date.UTC(year, month - 1, day, hour, minute, second);
+            const offset = getTimeZoneOffset(new Date(utcGuess), timeZone);
+            return new Date(utcGuess - offset);
+        }
+
+        function parseEventDate(component) {
+            const datePart = (component.startDate || '').slice(0, 10);
+            const timePart = component.startTime || component.time;
+
+            if (!datePart || !timePart || !/^\d{2}:\d{2}:\d{2}$/.test(timePart)) {
+                return null;
+            }
+
+            const [year, month, day] = datePart.split('-').map(Number);
+            const [hour, minute, second] = timePart.split(':').map(Number);
+            return zonedDateTimeToUtc(year, month, day, hour, minute, second, PARIS_TIME_ZONE);
+        }
+
+        function formatParisDateTime(date) {
+            return getFormatter('paris-date-time', {
+                timeZone: PARIS_TIME_ZONE,
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(date);
+        }
+
+        function setCountdownValues(totalMilliseconds) {
+            const safeDistance = Math.max(0, totalMilliseconds);
+            const days = Math.floor(safeDistance / 86400000);
+            const hours = Math.floor((safeDistance % 86400000) / 3600000);
+            const minutes = Math.floor((safeDistance % 3600000) / 60000);
+
+            document.getElementById('days').textContent = String(days);
+            document.getElementById('hours').textContent = String(hours);
+            document.getElementById('minutes').textContent = String(minutes);
+        }
+
+        function getNextEvent(now) {
+            return timedEvents.find((event) => event.date.getTime() > now.getTime()) || null;
+        }
+
+        function renderNextEvent() {
+            const now = new Date();
+            const nextEvent = getNextEvent(now);
+            const status = document.getElementById('countdownStatus');
+            const label = document.getElementById('countdownLabel');
+            const meta = document.getElementById('countdownMeta');
+
+            if (!nextEvent) {
+                status.textContent = 'Trip complete';
+                label.textContent = 'No remaining timed events in the itinerary.';
+                meta.textContent = 'The Paris schedule has finished.';
+                setCountdownValues(0);
+                return;
+            }
+
+            status.textContent = 'Next event in Paris';
+            label.textContent = nextEvent.title.trim();
+            meta.textContent = `${formatParisDateTime(nextEvent.date)} · Paris time`;
+            setCountdownValues(nextEvent.date.getTime() - now.getTime());
+        }
+
+        function buildTimedEvents(data) {
+            return data.days
+                .flatMap((day, dayIndex) => day.components.map((component, componentIndex) => {
+                    const date = parseEventDate(component);
+                    return date ? {
+                        date,
+                        dayIndex,
+                        componentIndex,
+                        title: component.title || 'Untitled event'
+                    } : null;
+                }))
+                .filter(Boolean)
+                .sort((left, right) => left.date - right.date || left.dayIndex - right.dayIndex || left.componentIndex - right.componentIndex);
+        }
+
+        async function loadItinerary() {
+            try {
+                const response = await fetch('r4m8t2k9v1q7d6p3.json', { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                timedEvents = buildTimedEvents(data);
+                renderNextEvent();
+                setInterval(renderNextEvent, 30000);
+            } catch (error) {
+                document.getElementById('countdownStatus').textContent = 'Unable to load itinerary';
+                document.getElementById('countdownLabel').textContent = 'Check that itinerary.json is available in this folder.';
+                document.getElementById('countdownMeta').textContent = error.message;
+                setCountdownValues(0);
+            }
+        }
+
+        initializePrivateAccess();
+        loadItinerary();
     </script>
 </body>
 
