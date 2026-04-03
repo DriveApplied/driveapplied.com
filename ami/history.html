@@ -95,13 +95,18 @@
       align-items:center;
       gap:8px;
       font-family: "Josefin Sans", sans-serif;
-      padding:10px 14px;
+      min-height:44px;
+      padding:8px 14px;
       border-radius:999px;
       border:1px solid rgba(245, 241, 232, 0.18);
       background:rgba(12, 12, 20, 0.34);
       color:rgba(249, 246, 240, 0.96);
       text-decoration:none;
       font-weight:700;
+      font-size:0.75rem;
+      letter-spacing:0.12em;
+      line-height:1;
+      white-space: nowrap;
       backdrop-filter: blur(12px);
     }
     .back-link:hover { background:rgba(12, 12, 20, 0.46); }
@@ -109,15 +114,18 @@
       display:inline-flex;
       align-items:center;
       font-family: "Josefin Sans", sans-serif;
-      padding:10px 14px;
+      min-height:44px;
+      padding:8px 14px;
       border-radius:999px;
       border:1px solid rgba(245, 241, 232, 0.16);
       background:rgba(12, 12, 20, 0.28);
       color:rgba(249, 246, 240, 0.92);
-      font-size:0.86rem;
+      font-size:0.75rem;
       font-weight:700;
-      letter-spacing:0.08em;
+      letter-spacing:0.12em;
+      line-height:1;
       text-transform:uppercase;
+      white-space: nowrap;
       backdrop-filter: blur(12px);
     }
     .theme-footer {
@@ -139,19 +147,6 @@
     .day-text { line-height: 1.6; }
     .info { margin-top: 16px; padding: 12px; border-left: 4px solid #8B7355; background: #fff6dc; }
     @media (max-width: 600px) {
-      .page-topbar {
-        align-items: stretch;
-      }
-
-      .back-link,
-      .paris-clock {
-        flex: 1;
-        justify-content: center;
-        min-height: 74px;
-        text-align: center;
-        line-height: 1.15;
-      }
-
       .container { padding: 30px 18px 70px; }
       h1 { font-size: 1.6rem; }
     }
@@ -160,7 +155,7 @@
 <body>
   <div class="page-shell">
     <div class="page-topbar">
-      <a href="index.html" class="back-link">← Back to Countdown</a>
+      <a href="index.html" class="back-link">← Back to Home</a>
       <div id="parisNow" class="paris-clock">Paris time</div>
     </div>
     <div class="container">
