@@ -18,6 +18,11 @@
             --cream: #f5f1e8;
             --gold: #d4af37;
             --ink: #f9f6f0;
+            /* --theme-background-image: url('../assets/unsplash/paris-default.jpg'); */
+            --theme-background-position: center 18%;
+            --theme-image-filter: brightness(0.92) contrast(1.04);
+            --theme-image-opacity: 0.58;
+            --theme-overlay: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
         }
 
         * {
@@ -49,18 +54,23 @@
             content: '';
             position: fixed;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&h=900&fit=crop') center 18% / cover no-repeat;
-            filter: brightness(0.92) contrast(1.04);
-            opacity: 0.58;
+            background-image: var(--theme-background-image);
+            background-position: var(--theme-background-position);
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* filter: var(--theme-image-filter);
+            opacity: var(--theme-image-opacity); */
             z-index: 0;
+            transition: filter 0.4s ease, opacity 0.4s ease, background-image 0.4s ease, background-position 0.4s ease;
         }
 
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
+            background: var(--theme-overlay);
             z-index: 1;
+            transition: background 0.4s ease;
         }
 
         .container {
@@ -187,13 +197,25 @@
             color: rgba(245, 241, 232, 0.86);
         }
 
+        .theme-hint {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 241, 232, 0.14);
+            background: rgba(12, 12, 20, 0.28);
+            color: rgba(245, 241, 232, 0.84);
+            font-size: 0.86rem;
+            letter-spacing: 0.04em;
+        }
+
         .hero-card {
             margin-top: 36px;
             padding: 28px;
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 28px;
             background: linear-gradient(180deg, rgba(24, 18, 26, 0.76), rgba(11, 13, 22, 0.72));
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
             box-shadow: 0 20px 80px rgba(0, 0, 0, 0.28);
         }
 
@@ -435,6 +457,7 @@
         <div class="eyebrow">Paris Time Live Sync</div>
         <h1 id="heroTitle">Paris Adventure</h1>
         <p class="lede">The countdown follows the next scheduled itinerary event in Paris, using the live data from the trip plan.</p>
+        <p id="themeHint" class="theme-hint">Today's theme: Paris Icons</p>
 
         <section class="hero-card" aria-live="polite">
             <p class="status" id="countdownStatus">Loading itinerary</p>
@@ -490,8 +513,124 @@
         const ACCESS_HASH_URL = 'n7v4k2p9x8q1.json';
         const ACCESS_STORAGE_KEY = 'driveapplied-ami-itinerary-unlocked';
         const TOURIST_NAME_STORAGE_KEY = 'driveapplied-ami-tourist-name';
+        const ITINERARY_DATA_URL = 'r4m8t2k9v1q7d6p3.json';
+        const PREVIEW_DATE_QUERY_PARAM = 'd';
+        const DEFAULT_THEME_IMAGE = 'assets/paris-default.jpg';
+        const ARRIVAL_THEME_IMAGE = 'assets/paris-arrival.jpg';
+        const DISNEY_THEME_IMAGE = 'assets/paris-disney.jpg';
+        const NEIGHBORHOOD_THEME_IMAGE = 'assets/paris-neighborhood.jpg';
+        const ART_THEME_IMAGE = 'assets/paris-art.jpg';
+        const SHOPPING_THEME_IMAGE = 'assets/paris-shopping.jpg';
+        const GARDENS_THEME_IMAGE = 'assets/paris-gardens.jpg';
+        const DEPARTURE_THEME_IMAGE = 'assets/paris-departure.jpg';
+
+        const THEME_CATALOG = {
+            default: {
+                label: 'Paris Icons',
+            image: DEFAULT_THEME_IMAGE,
+                position: 'center 18%',
+                filter: 'brightness(0.92) contrast(1.04)',
+                opacity: '0.58',
+                overlay: 'linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56))',
+                priority: 0,
+                rules: []
+            },
+            arrival: {
+                label: 'Arrival Day',
+                image: ARRIVAL_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.88) contrast(1.02)',
+                opacity: '0.54',
+                overlay: 'linear-gradient(to bottom, rgba(53, 31, 11, 0.18), rgba(11, 16, 27, 0.58))',
+                priority: 1,
+                rules: [
+                    { pattern: /arrival|airport|orly|check-?in|hotel\s+citadines|passports needed/i, weight: 6 },
+                    { pattern: /bus transfer to hotel|luggage will remain on the bus/i, weight: 5 }
+                ]
+            },
+            art: {
+                label: 'Art & Culture',
+                image: ART_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.84) contrast(1.04)',
+                opacity: '0.58',
+                overlay: 'linear-gradient(to bottom, rgba(14, 18, 31, 0.18), rgba(10, 10, 18, 0.64))',
+                priority: 2,
+                rules: [
+                    { pattern: /museum|musee|louvre|orsay|fragonard|opera garnier|invalides/i, weight: 9 },
+                    { pattern: /perfume|guided visit|licensed local guide/i, weight: 4 }
+                ]
+            },
+            neighborhood: {
+                label: 'Neighborhood Explorations',
+                image: NEIGHBORHOOD_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.9) contrast(1.02)',
+                opacity: '0.56',
+                overlay: 'linear-gradient(to bottom, rgba(24, 14, 10, 0.16), rgba(13, 14, 24, 0.56))',
+                priority: 7,
+                rules: [
+                    { pattern: /latin quarter|notre-?dame|sacre|moulin rouge/i, weight: 8 },
+                    { pattern: /champs-elys|arc de triomphe|concorde|palais royal|les halles|rue montorgueil|eiffel tower|seine river cruise/i, weight: 6 }
+                ]
+            },
+            shopping: {
+                label: 'Shopping & City Style',
+                image: SHOPPING_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.9) contrast(1.04)',
+                opacity: '0.56',
+                overlay: 'linear-gradient(to bottom, rgba(36, 18, 10, 0.16), rgba(18, 13, 24, 0.58))',
+                priority: 3,
+                rules: [
+                    { pattern: /galeries lafayette|printemps|grand magasins|shopping|opera district/i, weight: 8 },
+                    { pattern: /free time.*opera|march[ée] saint honor[ée]/i, weight: 5 }
+                ]
+            },
+            disney: {
+                label: 'Disney Day',
+                image: DISNEY_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.82) contrast(1.08)',
+                opacity: '0.58',
+                overlay: 'linear-gradient(to bottom, rgba(25, 18, 55, 0.2), rgba(8, 11, 28, 0.66))',
+                priority: 10,
+                rules: [
+                    { pattern: /disneyland|disney tales|2 park pass|disney coach parking/i, weight: 24 },
+                    { pattern: /parade|meal voucher included/i, weight: 8 }
+                ]
+            },
+            gardens: {
+                label: 'Gardens & Grand Estates',
+                image: GARDENS_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.9) contrast(1.02)',
+                opacity: '0.56',
+                overlay: 'linear-gradient(to bottom, rgba(18, 33, 18, 0.16), rgba(10, 18, 17, 0.58))',
+                priority: 7,
+                rules: [
+                    { pattern: /versailles|giverny|monet|gardens|chateau/i, weight: 12 },
+                    { pattern: /fountains|flower|water lilies/i, weight: 7 }
+                ]
+            },
+            departure: {
+                label: 'Departure Day',
+                image:  DEPARTURE_THEME_IMAGE,
+                position: 'center center',
+                filter: 'brightness(0.88) contrast(1.04)',
+                opacity: '0.54',
+                overlay: 'linear-gradient(to bottom, rgba(28, 19, 10, 0.18), rgba(12, 15, 24, 0.6))',
+                priority: 2,
+                rules: [
+                    { pattern: /check out|check-out|safe flight|flight|airport|hotel lockers|luggage goes/i, weight: 14 },
+                    { pattern: /return keys|have a safe flight back home|bus departure/i, weight: 9 }
+                ]
+            }
+        };
         const formatterCache = new Map();
         let timedEvents = [];
+        let itineraryDays = [];
+        const previewNow = getPreviewNowFromQuery();
 
         function normalizeTouristName(value) {
             return value.replace(/\s+/g, ' ').trim();
@@ -595,6 +734,152 @@
             }
 
             return payload.hash;
+        }
+
+        function getParisDateKey(date) {
+            const parts = getFormatter('paris-date-key', {
+                timeZone: PARIS_TIME_ZONE,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(date);
+
+            const map = {};
+            for (const part of parts) {
+                if (part.type !== 'literal') {
+                    map[part.type] = part.value;
+                }
+            }
+
+            return `${map.year}-${map.month}-${map.day}`;
+        }
+
+        function getTravelDateKey(day) {
+            return (day.travelDate || '').slice(0, 10);
+        }
+
+        function getPreviewNowFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const rawDate = params.get(PREVIEW_DATE_QUERY_PARAM);
+
+            if (!rawDate || !/^\d{4}-\d{2}-\d{2}$/.test(rawDate)) {
+                return null;
+            }
+
+            const [year, month, day] = rawDate.split('-').map(Number);
+            return zonedDateTimeToUtc(year, month, day, 12, 0, 0, PARIS_TIME_ZONE);
+        }
+
+        function getEffectiveNow() {
+            return previewNow ? new Date(previewNow.getTime()) : new Date();
+        }
+
+        function formatParisLongDate(date) {
+            return getFormatter('paris-long-date', {
+                timeZone: PARIS_TIME_ZONE,
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            }).format(date);
+        }
+
+        function scoreDayThemes(day, dayIndex, totalDays) {
+            const scores = Object.fromEntries(
+                Object.entries(THEME_CATALOG)
+                    .filter(([themeId]) => themeId !== 'default')
+                    .map(([themeId]) => [themeId, 0])
+            );
+
+            for (const component of day.components || []) {
+                const searchableText = [
+                    component.title || '',
+                    component.lookupCode || '',
+                    component.type || '',
+                    component.reservation?.supplierName || '',
+                    component.reservation?.serviceDetailName || ''
+                ].join(' ').toLowerCase();
+
+                for (const [themeId, theme] of Object.entries(THEME_CATALOG)) {
+                    if (themeId === 'default') {
+                        continue;
+                    }
+
+                    for (const rule of theme.rules) {
+                        if (rule.pattern.test(searchableText)) {
+                            scores[themeId] += rule.weight;
+                        }
+                    }
+                }
+            }
+
+            if (dayIndex === 0) {
+                scores.arrival += 2;
+            }
+
+            if (dayIndex === totalDays - 1) {
+                scores.departure += 4;
+            }
+
+            return scores;
+        }
+
+        function inferThemeForDay(day, dayIndex, totalDays) {
+            const scores = scoreDayThemes(day, dayIndex, totalDays);
+            let bestThemeId = 'default';
+            let bestScore = 0;
+            let bestPriority = -1;
+
+            for (const [themeId, score] of Object.entries(scores)) {
+                const priority = THEME_CATALOG[themeId].priority;
+                if (score > bestScore || (score === bestScore && score > 0 && priority > bestPriority)) {
+                    bestThemeId = themeId;
+                    bestScore = score;
+                    bestPriority = priority;
+                }
+            }
+
+            return bestThemeId;
+        }
+
+        function applyTheme(themeId) {
+            const theme = THEME_CATALOG[themeId] || THEME_CATALOG.default;
+            document.documentElement.style.setProperty('--theme-background-image', `url('${theme.image}')`);
+            document.documentElement.style.setProperty('--theme-background-position', theme.position);
+            document.documentElement.style.setProperty('--theme-image-filter', theme.filter);
+            document.documentElement.style.setProperty('--theme-image-opacity', theme.opacity);
+            document.documentElement.style.setProperty('--theme-overlay', theme.overlay);
+            const previewPrefix = previewNow ? `Previewing ${formatParisLongDate(previewNow)} · ` : '';
+            document.getElementById('themeHint').textContent = `${previewPrefix}Today's theme: ${theme.label}`;
+        }
+
+        function renderCurrentDayTheme(now = new Date()) {
+            if (!itineraryDays.length) {
+                applyTheme('default');
+                return;
+            }
+
+            const currentDayKey = getParisDateKey(now);
+            const exactDay = itineraryDays.find((day) => getTravelDateKey(day) === currentDayKey);
+
+            if (exactDay) {
+                applyTheme(exactDay.themeId);
+                return;
+            }
+
+            const firstDay = itineraryDays[0];
+            const lastDay = itineraryDays[itineraryDays.length - 1];
+
+            if (currentDayKey < getTravelDateKey(firstDay)) {
+                applyTheme(firstDay.themeId);
+                return;
+            }
+
+            if (currentDayKey > getTravelDateKey(lastDay)) {
+                applyTheme(lastDay.themeId);
+                return;
+            }
+
+            applyTheme('default');
         }
 
         async function initializePrivateAccess() {
@@ -717,23 +1002,29 @@
         }
 
         function renderNextEvent() {
-            const now = new Date();
+            const now = getEffectiveNow();
             const nextEvent = getNextEvent(now);
             const status = document.getElementById('countdownStatus');
             const label = document.getElementById('countdownLabel');
             const meta = document.getElementById('countdownMeta');
 
+            renderCurrentDayTheme(now);
+
             if (!nextEvent) {
-                status.textContent = 'Trip complete';
+                status.textContent = previewNow ? 'Preview mode' : 'Trip complete';
                 label.textContent = 'No remaining timed events in the itinerary.';
-                meta.textContent = 'The Paris schedule has finished.';
+                meta.textContent = previewNow
+                    ? `Previewing ${formatParisLongDate(previewNow)} in Paris time`
+                    : 'The Paris schedule has finished.';
                 setCountdownValues(0);
                 return;
             }
 
-            status.textContent = 'Next event in Paris';
+            status.textContent = previewNow ? 'Preview mode' : 'Next event in Paris';
             label.textContent = nextEvent.title.trim();
-            meta.textContent = `${formatParisDateTime(nextEvent.date)} · Paris time`;
+            meta.textContent = previewNow
+                ? `${formatParisDateTime(nextEvent.date)} · Paris time · previewing ${formatParisLongDate(previewNow)}`
+                : `${formatParisDateTime(nextEvent.date)} · Paris time`;
             setCountdownValues(nextEvent.date.getTime() - now.getTime());
         }
 
@@ -752,21 +1043,30 @@
                 .sort((left, right) => left.date - right.date || left.dayIndex - right.dayIndex || left.componentIndex - right.componentIndex);
         }
 
+        function buildItineraryDays(data) {
+            return data.days.map((day, dayIndex) => ({
+                ...day,
+                themeId: inferThemeForDay(day, dayIndex, data.days.length)
+            }));
+        }
+
         async function loadItinerary() {
             try {
-                const response = await fetch('r4m8t2k9v1q7d6p3.json', { cache: 'no-store' });
+                const response = await fetch(ITINERARY_DATA_URL, { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);
                 }
 
                 const data = await response.json();
+                itineraryDays = buildItineraryDays(data);
                 timedEvents = buildTimedEvents(data);
                 renderNextEvent();
                 setInterval(renderNextEvent, 30000);
             } catch (error) {
                 document.getElementById('countdownStatus').textContent = 'Unable to load itinerary';
-                document.getElementById('countdownLabel').textContent = 'Check that itinerary.json is available in this folder.';
+                document.getElementById('countdownLabel').textContent = 'Check that the itinerary data is available in this folder.';
                 document.getElementById('countdownMeta').textContent = error.message;
+                applyTheme('default');
                 setCountdownValues(0);
             }
         }
