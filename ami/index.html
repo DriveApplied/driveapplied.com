@@ -610,6 +610,22 @@
                 padding-top: 40px;
             }
 
+            .page-topbar {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .page-topbar .eyebrow,
+            .page-clock {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
+                line-height: 1.15;
+                margin-left: 0;
+            }
+
             .hero-card {
                 padding: 22px 18px;
             }
@@ -665,7 +681,7 @@
     <main id="appShell" class="container is-hidden">
         <div class="page-topbar">
             <div class="eyebrow">Paris Time Sync</div>
-            <div id="parisNow" class="page-clock">Paris time</div>
+            <div id="parisNow" class="page-clock">CET</div>
         </div>
         <h1 id="heroTitle">Paris Adventure</h1>
         <p class="lede">The countdown follows the next scheduled itinerary event in Paris, using the live data from the trip plan.</p>
@@ -1271,7 +1287,7 @@
                 weekday: 'short',
                 hour: 'numeric',
                 minute: '2-digit'
-            }).format(new Date())} Paris time`;
+            }).format(new Date())} CET`;
         }
 
         function normalizeLine(text) {

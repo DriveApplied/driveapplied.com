@@ -261,6 +261,21 @@
         }
 
         @media (max-width: 600px) {
+            .page-topbar {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .back-link,
+            .paris-clock {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
+                line-height: 1.15;
+            }
+
             .container {
                 padding: 25px;
             }
@@ -286,7 +301,7 @@
     <div class="page-shell">
         <div class="page-topbar">
             <a href="index.html" class="back-link">← Back to Home</a>
-            <div id="parisNow" class="paris-clock">Paris time</div>
+            <div id="parisNow" class="paris-clock">CET</div>
         </div>
         <div class="container">
             <h1>French Conversation Guide</h1>
@@ -651,7 +666,7 @@
                 weekday: 'short',
                 hour: 'numeric',
                 minute: '2-digit'
-            }).format(new Date())} Paris time`;
+            }).format(new Date())} CET`;
         }
 
         function toggleAccordion(header) {

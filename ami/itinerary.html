@@ -563,6 +563,21 @@
         }
 
         @media (max-width: 840px) {
+            .topbar {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .topbar a,
+            #parisNow {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
+                line-height: 1.15;
+            }
+
             .summary-grid {
                 grid-template-columns: 1fr;
             }
@@ -602,7 +617,7 @@
     <div id="appShell" class="shell is-hidden">
         <div class="topbar">
             <a href="index.html">← Back to Home</a>
-            <span id="parisNow">Paris time</span>
+            <span id="parisNow">CET</span>
         </div>
 
         <header class="hero">
@@ -887,7 +902,7 @@
                 weekday: 'short',
                 hour: 'numeric',
                 minute: '2-digit'
-            }).format(new Date())} Paris time`;
+            }).format(new Date())} CET`;
         }
 
         function updateThemeFooter() {
