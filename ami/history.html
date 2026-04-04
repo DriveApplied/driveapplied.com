@@ -32,138 +32,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="ami.css" />
   <style>
     :root {
-      --theme-background-image: url('assets/paris-default.jpg');
-      --theme-background-position: center 18%;
-      --theme-overlay: linear-gradient(to bottom, rgba(17, 10, 7, 0.16), rgba(10, 12, 20, 0.56));
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; min-height: 100%; }
-    body {
-      font-family: 'Josefin Sans', sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 36%),
-        linear-gradient(140deg, #27160d 0%, #1a1a2e 52%, #0d101b 100%);
-      color: #333;
-      padding: 20px;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: var(--theme-background-image);
-      background-position: var(--theme-background-position);
-      background-size: cover;
-      background-repeat: no-repeat;
-      z-index: 0;
-    }
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: var(--theme-overlay);
-      z-index: 1;
-    }
-    .page-shell {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+      --ami-page-shell-width: 900px;
+      --ami-ink: #173145;
     }
     .container {
-      background: rgba(255,255,255,0.97);
-      border-radius: 16px;
       padding: 40px 30px 80px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
-    .page-topbar {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:28px;
-    }
-    h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #8B7355; margin-bottom: 10px; text-align:center; }
-    .subtitle { text-align:center; color:#666; margin-bottom:30px; }
-    .back-link {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-family: "Josefin Sans", sans-serif;
-      min-height:44px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(245, 241, 232, 0.18);
-      background:rgba(12, 12, 20, 0.34);
-      color:rgba(249, 246, 240, 0.96);
-      text-decoration:none;
-      font-weight:700;
-      font-size:0.75rem;
-      letter-spacing:0.12em;
-      line-height:1;
-      white-space: nowrap;
-      backdrop-filter: blur(12px);
-    }
-    .back-link:hover { background:rgba(12, 12, 20, 0.46); }
-    .paris-clock {
-      display:inline-flex;
-      align-items:center;
-      font-family: "Josefin Sans", sans-serif;
-      min-height:44px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(245, 241, 232, 0.16);
-      background:rgba(12, 12, 20, 0.28);
-      color:rgba(249, 246, 240, 0.92);
-      font-size:0.75rem;
-      font-weight:700;
-      letter-spacing:0.12em;
-      line-height:1;
-      text-transform:uppercase;
-      white-space: nowrap;
-      backdrop-filter: blur(12px);
-    }
-    .theme-footer {
-      margin-top:18px;
-      text-align:center;
-      color:rgba(249, 246, 240, 0.92);
-      font-size:0.86rem;
-      letter-spacing:0.04em;
-    }
-    .theme-footer[hidden] { display:none; }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #1d4464; margin-bottom: 10px; text-align:center; }
+    .subtitle { text-align:center; color:#5f7488; margin-bottom:30px; }
     .day-box {
-      border: 1px solid #e0d5c7;
+      border: 1px solid #d7e7f3;
       border-radius: 12px;
       padding: 18px;
       margin-top: 15px;
-      background: #fbf7f1;
+      background: #f4f9fd;
     }
-    .day-title { margin-bottom: 10px; color: #8B7355; font-weight:700; }
-    .day-text { line-height: 1.6; }
-    .info { margin-top: 16px; padding: 12px; border-left: 4px solid #8B7355; background: #fff6dc; }
-    @media (max-width: 600px) {
-      .page-topbar {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .back-link,
-      .paris-clock {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        white-space: normal;
-        line-height: 1.15;
-      }
-
-      .container { padding: 30px 18px 70px; }
+    .day-title { margin-bottom: 10px; color: #1d4464; font-weight:700; }
+    .day-text { line-height: 1.6; color: #264761; }
+    .info { margin-top: 16px; padding: 12px; border-left: 4px solid #3f7dac; background: #ebf5fb; color: #264761; }
+    @media (max-width: 840px) {
       h1 { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 30px 18px 70px; }
     }
   </style>
 </head>

@@ -1,0 +1,176 @@
+:root {
+    --theme-background-image: url('assets/paris-default.jpg');
+    --theme-background-position: center 18%;
+    --theme-overlay: linear-gradient(to bottom, rgba(11, 26, 42, 0.18), rgba(6, 14, 24, 0.68));
+    --ami-page-bg:
+        radial-gradient(circle at top, rgba(108, 181, 244, 0.22), transparent 38%),
+        linear-gradient(145deg, #08131d 0%, #102639 54%, #071019 100%);
+    --ami-body-padding: 20px;
+    --ami-page-shell-width: 900px;
+    --ami-shell-width: 1120px;
+    --ami-shell-padding: 32px 20px 56px;
+    --ami-container-padding: 40px;
+    --ami-container-padding-bottom: 80px;
+    --ami-container-radius: 18px;
+    --ami-card-bg: rgba(248, 252, 255, 0.95);
+    --ami-card-border: rgba(162, 191, 214, 0.18);
+    --ami-shadow: 0 20px 60px rgba(4, 11, 21, 0.3);
+    --ami-pill-border: rgba(223, 236, 248, 0.18);
+    --ami-pill-muted-border: rgba(223, 236, 248, 0.16);
+    --ami-pill-bg: rgba(8, 16, 28, 0.36);
+    --ami-pill-bg-hover: rgba(8, 16, 28, 0.5);
+    --ami-pill-muted-bg: rgba(8, 16, 28, 0.28);
+    --ami-pill-text: rgba(244, 249, 255, 0.96);
+    --ami-theme-text: rgba(244, 249, 255, 0.92);
+    --ami-ink: #173145;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    min-height: 100vh;
+    padding: var(--ami-body-padding);
+    position: relative;
+    overflow-x: hidden;
+    color: var(--ami-ink);
+    background: var(--ami-page-bg);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--theme-background-image);
+    background-position: var(--theme-background-position);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--theme-overlay);
+    z-index: 1;
+}
+
+.page-shell {
+    max-width: var(--ami-page-shell-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.shell {
+    max-width: var(--ami-shell-width);
+    margin: 0 auto;
+    padding: var(--ami-shell-padding);
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    background: var(--ami-card-bg);
+    border: 1px solid var(--ami-card-border);
+    border-radius: var(--ami-container-radius);
+    padding: var(--ami-container-padding);
+    padding-bottom: var(--ami-container-padding-bottom);
+    box-shadow: var(--ami-shadow);
+    backdrop-filter: blur(8px);
+}
+
+.page-topbar,
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.back-link,
+.topbar a,
+.paris-clock,
+#parisNow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    white-space: nowrap;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+}
+
+.back-link,
+.topbar a {
+    border: 1px solid var(--ami-pill-border);
+    background: var(--ami-pill-bg);
+    color: var(--ami-pill-text);
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.back-link:hover,
+.topbar a:hover {
+    background: var(--ami-pill-bg-hover);
+}
+
+.paris-clock,
+#parisNow {
+    border: 1px solid var(--ami-pill-muted-border);
+    background: var(--ami-pill-muted-bg);
+    color: rgba(244, 249, 255, 0.92);
+}
+
+.theme-footer {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--ami-theme-text);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+}
+
+.theme-footer[hidden] {
+    display: none;
+}
+
+@media (max-width: 840px) {
+    .page-topbar,
+    .topbar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .back-link,
+    .topbar a,
+    .paris-clock,
+    #parisNow {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.15;
+    }
+}
