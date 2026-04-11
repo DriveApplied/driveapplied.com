@@ -734,8 +734,8 @@
             </div>
         </section>
 
-        <div id="farewellMessage" class="message">Bon Voyage!</div>
-        <div id="farewellTranslation" class="translation">"Have a wonderful adventure!"</div>
+        <div id="farewellMessage" class="message">Welcome Home!</div>
+        <div id="farewellTranslation" class="translation">"We can't wait to hear about your adventure!"</div>
         <a id="changeNameLink" class="change-name-link" href="#">Change your name</a>
 
         <section id="privateAccessSection" class="private-access" aria-label="Private access">
@@ -910,8 +910,8 @@
             const safeName = normalizeTouristName(name) || 'Paris';
             document.title = `${safeName}'s Paris Adventure Countdown`;
             document.getElementById('heroTitle').textContent = `${safeName}'s Paris Adventure`;
-            document.getElementById('farewellMessage').textContent = `Bon Voyage, ${safeName}!`;
-            document.getElementById('farewellTranslation').textContent = `"Have a wonderful adventure, ${safeName}!"`;
+            document.getElementById('farewellMessage').textContent = `Welcome Home, ${safeName}!`;
+            document.getElementById('farewellTranslation').textContent = `"We can't wait to hear about your adventure, ${safeName}!"`;
         }
 
         function unlockNameGate() {
