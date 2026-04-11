@@ -764,6 +764,7 @@
 
     <script>
         const PARIS_TIME_ZONE = 'Europe/Paris';
+        const EASTERN_TIME_ZONE = 'America/New_York';
         const ACCESS_HASH_URL = 'n7v4k2p9x8q1.json';
         const ACCESS_STORAGE_KEY = 'driveapplied-ami-itinerary-unlocked';
         const TOURIST_NAME_STORAGE_KEY = 'driveapplied-ami-tourist-name';
@@ -1240,6 +1241,29 @@
             return new Date(utcGuess - offset);
         }
 
+        function getEventTimeZone(component) {
+            const text = `${component?.title || ''}\n${component?.description || ''}`;
+
+            if (/\bEDT\b/i.test(text)) {
+                return {
+                    timeZone: EASTERN_TIME_ZONE,
+                    label: 'U.S. Eastern time (EDT)'
+                };
+            }
+
+            if (/\bEST\b/i.test(text)) {
+                return {
+                    timeZone: EASTERN_TIME_ZONE,
+                    label: 'U.S. Eastern time (EST)'
+                };
+            }
+
+            return {
+                timeZone: PARIS_TIME_ZONE,
+                label: 'Paris time'
+            };
+        }
+
         function parseEventDate(component) {
             const datePart = (component.startDate || '').slice(0, 10);
             const timePart = component.startTime || component.time;
@@ -1250,7 +1274,41 @@
 
             const [year, month, day] = datePart.split('-').map(Number);
             const [hour, minute, second] = timePart.split(':').map(Number);
-            return zonedDateTimeToUtc(year, month, day, hour, minute, second, PARIS_TIME_ZONE);
+            const eventTimeZone = getEventTimeZone(component);
+
+            return {
+                date: zonedDateTimeToUtc(year, month, day, hour, minute, second, eventTimeZone.timeZone),
+                timeZone: eventTimeZone.timeZone,
+                timeZoneLabel: eventTimeZone.label
+            };
+        }
+
+        function formatEventDateTime(date, timeZone) {
+            return getFormatter(`event-date-time-${timeZone}`, {
+                timeZone,
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(date);
+        }
+
+        function formatEventTime(date, timeZone) {
+            return getFormatter(`event-time-${timeZone}`, {
+                timeZone,
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(date);
+        }
+
+        function formatEventShortDate(date, timeZone) {
+            return getFormatter(`event-short-date-${timeZone}`, {
+                timeZone,
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            }).format(date);
         }
 
         function formatParisDateTime(date) {
@@ -1366,7 +1424,7 @@
             const component = event.component || {};
             const reservation = component.reservation || {};
             const items = [
-                { label: 'When', value: formatParisTime(event.date) },
+                { label: 'When', value: formatEventTime(event.date, event.timeZone) },
                 { label: 'Focus', value: formatEventCategory(component) }
             ];
             const reservationName = normalizeLine(reservation.serviceDetailName || reservation.supplierName || '');
@@ -1374,7 +1432,7 @@
             if (reservationName) {
                 items.push({ label: 'Booked', value: reservationName });
             } else {
-                items.push({ label: 'Day', value: formatParisShortDate(event.date) });
+                items.push({ label: 'Day', value: formatEventShortDate(event.date, event.timeZone) });
             }
 
             return items;
@@ -1473,13 +1531,13 @@
             }
 
             const parsedContent = parseEventContent(nextEvent);
-            status.textContent = previewNow ? 'Preview mode' : 'Next event in Paris';
+            status.textContent = previewNow ? 'Preview mode' : 'Next itinerary event';
             label.textContent = parsedContent.headline;
             meta.textContent = previewNow
-                ? `${formatParisDateTime(nextEvent.date)} · Paris time · previewing ${formatParisLongDate(previewNow)}`
-                : `${formatParisDateTime(nextEvent.date)} · Paris time`;
-            eventTime.textContent = formatParisTime(nextEvent.date);
-            eventTimeZone.textContent = previewNow ? 'Paris time · preview' : 'Paris time';
+                ? `${formatEventDateTime(nextEvent.date, nextEvent.timeZone)} · ${nextEvent.timeZoneLabel} · previewing ${formatParisLongDate(previewNow)}`
+                : `${formatEventDateTime(nextEvent.date, nextEvent.timeZone)} · ${nextEvent.timeZoneLabel}`;
+            eventTime.textContent = formatEventTime(nextEvent.date, nextEvent.timeZone);
+            eventTimeZone.textContent = previewNow ? `${nextEvent.timeZoneLabel} · preview` : nextEvent.timeZoneLabel;
             renderGlanceItems(buildGlanceItems(nextEvent));
             renderHighlights(parsedContent.highlights);
             renderEventNote(parsedContent.note);
@@ -1489,9 +1547,11 @@
         function buildTimedEvents(data) {
             return data.days
                 .flatMap((day, dayIndex) => day.components.map((component, componentIndex) => {
-                    const date = parseEventDate(component);
-                    return date ? {
-                        date,
+                    const parsedDate = parseEventDate(component);
+                    return parsedDate ? {
+                        date: parsedDate.date,
+                        timeZone: parsedDate.timeZone,
+                        timeZoneLabel: parsedDate.timeZoneLabel,
                         dayIndex,
                         componentIndex,
                         title: component.title || 'Untitled event',
