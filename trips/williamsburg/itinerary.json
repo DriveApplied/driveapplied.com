@@ -5,13 +5,226 @@
     "lodging": "Marriott’s Manor Club"
   },
   "days": [
-    {"id":"fri-24","weekday":"Friday","date":"July 24","title":"Arrival Day","summary":"Settle in, stock the villa, and keep the first night easy.","periods":[{"label":"Morning","items":["Depart New Jersey around 8:30–9:00 AM","Lunch en route"]},{"label":"Afternoon","items":["Arrive at Marriott’s Manor Club","Check in and unpack","Explore the resort","Pool or hot tub"]},{"label":"Evening","items":["Grocery run","Casual dinner nearby","Early night"]}],"tip":"No agenda tonight. The goal is to arrive rested."},
-    {"id":"sat-25","weekday":"Saturday","date":"July 25","title":"Colonial Williamsburg","summary":"Wander the east end, take a heat break, then return for a candlelit evening.","periods":[{"label":"Morning","items":["Breakfast at the villa","Walk Duke of Gloucester Street","Capitol","Governor’s Palace grounds","Shops and demonstrations"]},{"label":"Lunch","items":["The Cheese Shop","or Blue Talon Bistro"]},{"label":"Afternoon","items":["Resort break if it gets hot"]},{"label":"After dinner","items":["Walk Colonial Williamsburg at night","Enjoy the lantern-lit streets"]}],"reservation":{"time":"7:15 PM","name":"King’s Arms Tavern","note":"The signature dinner of the trip."}},
-    {"id":"sun-26","weekday":"Sunday","date":"July 26","title":"Resort + Yorktown","summary":"A deliberately lighter recovery day with room to improvise.","options":["Sleep in","Pool","Yorktown Riverwalk","Beach","Ice cream","Short historical stops"],"reservation":{"time":"TBD","name":"Williamsburg Inn","note":"Possible reservation—time to be confirmed."}},
-    {"id":"mon-27","weekday":"Monday","date":"July 27","title":"Jamestown","summary":"Start with living history, then add the archaeological site if everyone is interested.","periods":[{"label":"Morning","items":["Jamestown Settlement","Historic Jamestowne, if interested"]},{"label":"Afternoon","items":["Lunch nearby","Back to the resort around 3:00 PM"]},{"label":"Evening","items":["Relax after dinner"]}],"reservation":{"time":"5:15 PM","name":"Sweet Tea & Barley","note":"An easy early dinner with a waterfront feel."}},
-    {"id":"tue-28","weekday":"Tuesday","date":"July 28","title":"Busch Gardens","summary":"First park day: arrive early, learn the lay of the land, and leave before you’re spent.","periods":[{"label":"Park plan","items":["Arrive before opening","Take advantage of weekday crowds","Leave around 3:00–4:00 PM"]},{"label":"Reset","items":["Return to the hotel","Rest before dinner"]},{"label":"After dinner","items":["Walk the west end of Colonial Williamsburg"]}],"reservation":{"time":"6:45 PM","name":"Christiana Campbell’s Tavern","note":"A simple transition after a hotel break."}},
-    {"id":"wed-29","weekday":"Wednesday","date":"July 29","title":"Busch Gardens, Part 2","summary":"No checklist—repeat favorites, catch the shows, and stay later.","periods":[{"label":"Today’s rhythm","items":["Ride favorites","See the shows you missed","Do the water rides","Stay into the evening"]}],"tip":"Everyone knows the park now. Let this be the relaxed best-of day."},
-    {"id":"thu-30","weekday":"Thursday","date":"July 30","title":"Flex Day","summary":"Keep this day open and choose based on energy, weather, and favorites.","options":["Revisit Colonial Williamsburg","Outlet shopping","Winery or brewery","Mini golf","Resort pool","Rent bikes","Visit anything you skipped"],"tip":"If you return to the Historic Area, revisit favorite shops and pick up souvenirs."},
-    {"id":"fri-31","weekday":"Friday","date":"July 31","title":"Head Home","summary":"Breakfast, pack up, and point north.","periods":[{"label":"Morning","items":["Breakfast","Pack","Check out","Head home"]}]}
+    {
+      "id": "fri-24",
+      "weekday": "Friday",
+      "date": "July 24",
+      "title": "Arrival Day",
+      "summary": "Settle in, stock the villa, and keep the first night easy.",
+      "periods": [
+        {
+          "label": "Morning",
+          "items": [
+            "Depart New Jersey around 8:30–9:00 AM",
+            "Lunch en route"
+          ]
+        },
+        {
+          "label": "Afternoon",
+          "items": [
+            "Arrive at Marriott’s Manor Club",
+            "Check in and unpack",
+            "Explore the resort",
+            "Pool or hot tub"
+          ]
+        },
+        {
+          "label": "Evening",
+          "items": [
+            "Grocery run",
+            "Casual dinner nearby",
+            "Early night"
+          ]
+        }
+      ],
+      "tip": "No agenda tonight. The goal is to arrive rested."
+    },
+    {
+      "id": "sat-25",
+      "weekday": "Saturday",
+      "date": "July 25",
+      "title": "Colonial Williamsburg",
+      "summary": "Wander the east end, take a heat break, then return for a candlelit evening.",
+      "periods": [
+        {
+          "label": "Morning",
+          "items": [
+            "Breakfast at the villa",
+            "Walk Duke of Gloucester Street",
+            "Capitol",
+            "Governor’s Palace grounds",
+            "Shops and demonstrations"
+          ]
+        },
+        {
+          "label": "Lunch",
+          "items": [
+            "The Cheese Shop",
+            "or Blue Talon Bistro"
+          ]
+        },
+        {
+          "label": "Afternoon",
+          "items": [
+            "Resort break if it gets hot"
+          ]
+        },
+        {
+          "label": "After dinner",
+          "items": [
+            "Walk Colonial Williamsburg at night",
+            "Enjoy the lantern-lit streets"
+          ]
+        }
+      ],
+      "reservation": {
+        "time": "7:15 PM",
+        "name": "King’s Arms Tavern",
+        "note": "The signature dinner of the trip."
+      }
+    },
+    {
+      "id": "sun-26",
+      "weekday": "Sunday",
+      "date": "July 26",
+      "title": "Resort + Yorktown",
+      "summary": "A deliberately lighter recovery day with room to improvise.",
+      "options": [
+        "Sleep in",
+        "Pool",
+        "Yorktown Riverwalk",
+        "Beach",
+        "Ice cream",
+        "Short historical stops"
+      ],
+      "reservation": {
+        "time": "7:30 PM",
+        "name": "Williamsburg Inn",
+        "note": "Terrace Room at the Williamsburg Inn."
+      }
+    },
+    {
+      "id": "mon-27",
+      "weekday": "Monday",
+      "date": "July 27",
+      "title": "Jamestown",
+      "summary": "Start with living history, then add the archaeological site if everyone is interested.",
+      "periods": [
+        {
+          "label": "Morning",
+          "items": [
+            "Jamestown Settlement",
+            "Historic Jamestowne, if interested"
+          ]
+        },
+        {
+          "label": "Afternoon",
+          "items": [
+            "Lunch nearby",
+            "Back to the resort around 3:00 PM"
+          ]
+        },
+        {
+          "label": "Evening",
+          "items": [
+            "Relax after dinner"
+          ]
+        }
+      ],
+      "reservation": {
+        "time": "5:15 PM",
+        "name": "Sweet Tea & Barley",
+        "note": "An easy early dinner with a waterfront feel."
+      }
+    },
+    {
+      "id": "tue-28",
+      "weekday": "Tuesday",
+      "date": "July 28",
+      "title": "Busch Gardens",
+      "summary": "First park day: arrive early, learn the lay of the land, and leave before you’re spent.",
+      "periods": [
+        {
+          "label": "Park plan",
+          "items": [
+            "Arrive before opening",
+            "Take advantage of weekday crowds",
+            "Leave around 3:00–4:00 PM"
+          ]
+        },
+        {
+          "label": "Reset",
+          "items": [
+            "Return to the hotel",
+            "Rest before dinner"
+          ]
+        },
+        {
+          "label": "After dinner",
+          "items": [
+            "Walk the west end of Colonial Williamsburg"
+          ]
+        }
+      ],
+      "reservation": {
+        "time": "6:45 PM",
+        "name": "Christiana Campbell’s Tavern",
+        "note": "A simple transition after a hotel break."
+      }
+    },
+    {
+      "id": "wed-29",
+      "weekday": "Wednesday",
+      "date": "July 29",
+      "title": "Busch Gardens, Part 2",
+      "summary": "No checklist—repeat favorites, catch the shows, and stay later.",
+      "periods": [
+        {
+          "label": "Today’s rhythm",
+          "items": [
+            "Ride favorites",
+            "See the shows you missed",
+            "Do the water rides",
+            "Stay into the evening"
+          ]
+        }
+      ],
+      "tip": "Everyone knows the park now. Let this be the relaxed best-of day."
+    },
+    {
+      "id": "thu-30",
+      "weekday": "Thursday",
+      "date": "July 30",
+      "title": "Flex Day",
+      "summary": "Keep this day open and choose based on energy, weather, and favorites.",
+      "options": [
+        "Revisit Colonial Williamsburg",
+        "Outlet shopping",
+        "Winery or brewery",
+        "Mini golf",
+        "Resort pool",
+        "Rent bikes",
+        "Visit anything you skipped"
+      ],
+      "tip": "If you return to the Historic Area, revisit favorite shops and pick up souvenirs."
+    },
+    {
+      "id": "fri-31",
+      "weekday": "Friday",
+      "date": "July 31",
+      "title": "Head Home",
+      "summary": "Breakfast, pack up, and point north.",
+      "periods": [
+        {
+          "label": "Morning",
+          "items": [
+            "Breakfast",
+            "Pack",
+            "Check out",
+            "Head home"
+          ]
+        }
+      ]
+    }
   ]
 }
