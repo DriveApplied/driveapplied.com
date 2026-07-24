@@ -132,6 +132,17 @@ h1 { margin:24px 0 0; font-family:"Playfair Display",serif; font-size:clamp(48px
 .note-editor input,.note-editor select { min-height:44px; padding:10px 12px; }
 .note-editor textarea { min-height:190px; padding:13px; line-height:1.65; resize:vertical; }
 .note-editor input:focus,.note-editor select:focus,.note-editor textarea:focus { border-color:#315c55; box-shadow:0 0 0 3px rgba(49,92,85,.1); }
+.photo-field { margin:5px 0 7px; padding:15px; border:1px solid rgba(49,92,85,.16); border-radius:16px; background:rgba(255,255,255,.58); }
+.photo-field-heading { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.photo-label { color:#315c55; font-size:10px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+.photo-field-heading p { margin:4px 0 0; color:var(--muted); font-size:11px; }
+.add-photos { display:inline-flex; align-items:center; gap:5px; flex:0 0 auto; padding:9px 12px; border:1px solid var(--line); border-radius:999px; color:#315c55 !important; background:white; font-size:10px !important; cursor:pointer; }
+.photo-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
+.photo-preview[hidden] { display:none; }
+.photo-preview-item { position:relative; margin:0; aspect-ratio:1; overflow:hidden; border-radius:12px; background:#dbe3df; }
+.photo-preview-item img { display:block; width:100%; height:100%; object-fit:cover; }
+.remove-photo { position:absolute; top:6px; right:6px; display:grid; place-items:center; width:26px; height:26px; padding:0; border:1px solid rgba(255,255,255,.55); border-radius:50%; color:white; background:rgba(14,23,22,.72); font-size:18px; line-height:1; cursor:pointer; backdrop-filter:blur(6px); }
+.photo-status { min-height:16px; margin:8px 0 0; color:#315c55; font-size:10px; font-weight:700; }
 .note-meta-fields { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
 .note-meta-fields label:last-child { grid-column:1/-1; }
 .editor-actions { display:flex; align-items:center; justify-content:space-between; gap:15px; min-height:46px; }
@@ -140,6 +151,12 @@ h1 { margin:24px 0 0; font-family:"Playfair Display",serif; font-size:clamp(48px
 .quiet-button { padding:8px 11px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:rgba(255,255,255,.58); font-size:11px; cursor:pointer; }
 .notes-archive { padding:28px; }
 .archive-count { padding:7px 11px; border-radius:999px; color:#315c55; background:rgba(49,92,85,.08); font-size:10px; font-weight:800; text-transform:uppercase; }
+.archive-tools { display:grid; justify-items:end; gap:9px; }
+.note-tool-buttons { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; }
+.note-tool-buttons button { display:inline-flex; align-items:center; gap:5px; padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:#315c55; background:rgba(255,255,255,.62); font-size:10px; font-weight:800; cursor:pointer; }
+.note-tool-buttons button:hover:not(:disabled) { background:white; }
+.note-tool-buttons button:disabled { opacity:.4; cursor:not-allowed; }
+.archive-status { min-height:18px; margin:0 0 8px; color:#315c55; font-size:11px; font-weight:700; text-align:right; }
 .notes-list { display:grid; gap:13px; }
 .note-card { padding:20px; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,.62); }
 .note-card-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
@@ -148,6 +165,10 @@ h1 { margin:24px 0 0; font-family:"Playfair Display",serif; font-size:clamp(48px
 .note-card h3 { margin:13px 0 0; font-family:"Playfair Display",serif; font-size:24px; }
 .note-place { margin:7px 0 0; color:#9a593f; font-size:11px; font-weight:700; }
 .note-body { margin:12px 0 0; color:var(--muted); font-size:14px; line-height:1.7; white-space:pre-wrap; }
+.note-photos { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:15px; }
+.note-photos[hidden] { display:none; }
+.note-photos img { display:block; width:100%; aspect-ratio:4/3; border-radius:12px; object-fit:cover; background:#dbe3df; }
+.note-photos img:only-child { grid-column:1/-1; aspect-ratio:16/9; }
 .note-actions { display:flex; gap:8px; margin-top:17px; padding-top:13px; border-top:1px solid var(--line); }
 .note-actions button { padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:#315c55; background:transparent; font-size:10px; font-weight:800; cursor:pointer; }
 .note-actions .delete-note { color:#9a4d43; margin-left:auto; }
@@ -158,3 +179,23 @@ h1 { margin:24px 0 0; font-family:"Playfair Display",serif; font-size:clamp(48px
 .empty-notes p { max-width:380px; margin:8px auto 0; font-size:13px; line-height:1.6; }
 @media(max-width:820px){.notebook-layout{grid-template-columns:1fr}.note-editor{position:static}.notes-archive{padding:22px}}
 @media(max-width:520px){.note-editor{padding:22px}.note-meta-fields{grid-template-columns:1fr}.note-meta-fields label:last-child{grid-column:auto}.editor-actions{align-items:flex-end}.note-card-top{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.archive-heading{display:block}.archive-tools{justify-items:start;margin-top:13px}.note-tool-buttons{justify-content:flex-start}.archive-status{text-align:left}}
+
+@media print {
+  @page { margin:18mm; }
+  html,body { color:#111; background:white !important; }
+  body { padding:0; }
+  body::before,.topbar,.notes-intro,.note-editor,.theme-footer,.note-tool-buttons,.archive-status,.note-actions,.empty-notes { display:none !important; }
+  .page-shell,.notebook-layout { display:block; width:100%; max-width:none; margin:0; }
+  .notes-archive { padding:0; border:0; box-shadow:none; background:white; }
+  .archive-heading { padding-bottom:12px; border-bottom:2px solid #222; }
+  .archive-heading::before { content:"Williamsburg"; display:block; margin-bottom:4px; font-family:"Playfair Display",serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+  .archive-count { color:#333; background:transparent; }
+  .notes-list { display:block; }
+  .note-card { break-inside:avoid; margin:0; padding:18px 0; border:0; border-bottom:1px solid #bbb; border-radius:0; background:white; }
+  .note-kind { padding:0; color:#555; background:transparent; }
+  .note-card h3 { color:#111; }
+  .note-card time,.note-place,.note-body { color:#333; }
+  .note-photos { grid-template-columns:repeat(2,1fr); }
+  .note-photos img { max-height:90mm; object-fit:contain; background:white; break-inside:avoid; }
+}

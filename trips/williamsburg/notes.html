@@ -64,6 +64,21 @@
         <label for="noteBody">What happened?</label>
         <textarea id="noteBody" name="body" rows="8" maxlength="3000" placeholder="Write down the detail you’ll want to remember…" required></textarea>
 
+        <div class="photo-field">
+          <div class="photo-field-heading">
+            <div>
+              <span class="photo-label">Photos</span>
+              <p>Stored on this device with the note.</p>
+            </div>
+            <label class="add-photos" for="notePhotos">
+              <span aria-hidden="true">＋</span> Add photos
+            </label>
+          </div>
+          <input id="notePhotos" type="file" accept="image/*" multiple hidden>
+          <div id="photoPreview" class="photo-preview" aria-live="polite"></div>
+          <p id="photoStatus" class="photo-status" role="status" aria-live="polite"></p>
+        </div>
+
         <div class="editor-actions">
           <span id="saveStatus" role="status" aria-live="polite"></span>
           <button id="saveNote" class="save-note" type="submit">Save note</button>
@@ -113,6 +128,7 @@
       <h3></h3>
       <p class="note-place"></p>
       <p class="note-body"></p>
+      <div class="note-photos"></div>
       <div class="note-actions">
         <button class="edit-note" type="button">Edit</button>
         <button class="delete-note" type="button">Delete</button>
