@@ -1,0 +1,9 @@
+{
+  "name": "Williamsburg Adventure",
+  "short_name": "Williamsburg",
+  "description": "Countdown and itinerary for a Williamsburg family trip",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b1c1b",
+  "theme_color": "#0b1c1b"
+}
