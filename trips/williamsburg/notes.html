@@ -76,8 +76,22 @@
             <span class="section-number">The archive</span>
             <h2 id="archiveTitle">Your entries</h2>
           </div>
-          <span id="noteCount" class="archive-count">0 notes</span>
+          <div class="archive-tools">
+            <span id="noteCount" class="archive-count">0 notes</span>
+            <div class="note-tool-buttons" aria-label="Field note actions">
+              <button id="exportNotes" type="button" disabled>
+                <span aria-hidden="true">↓</span> Export
+              </button>
+              <button id="shareNotes" type="button" disabled>
+                <span aria-hidden="true">↗</span> Share
+              </button>
+              <button id="printNotes" type="button" disabled>
+                <span aria-hidden="true">▣</span> Print
+              </button>
+            </div>
+          </div>
         </header>
+        <p id="archiveStatus" class="archive-status" role="status" aria-live="polite"></p>
         <div id="notesList" class="notes-list"></div>
         <div id="emptyNotes" class="empty-notes">
           <span aria-hidden="true">✎</span>

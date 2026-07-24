@@ -22,6 +22,10 @@
   const saveButton = document.querySelector("#saveNote");
   const cancelButton = document.querySelector("#cancelEdit");
   const saveStatus = document.querySelector("#saveStatus");
+  const archiveStatus = document.querySelector("#archiveStatus");
+  const exportButton = document.querySelector("#exportNotes");
+  const shareButton = document.querySelector("#shareNotes");
+  const printButton = document.querySelector("#printNotes");
   const template = document.querySelector("#noteTemplate");
   let editingId = null;
 
@@ -49,6 +53,12 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }
 
+  function sortedNotes() {
+    return readNotes().sort((a, b) => {
+      return b.date.localeCompare(a.date) || b.updatedAt.localeCompare(a.updatedAt);
+    });
+  }
+
   function formatDate(value) {
     return new Intl.DateTimeFormat("en-US", {
       month: "long",
@@ -68,13 +78,102 @@
     saveStatus.textContent = "";
   }
 
-  function render() {
-    const notes = readNotes().sort((a, b) => {
-      return b.date.localeCompare(a.date) || b.updatedAt.localeCompare(a.updatedAt);
+  function notesAsMarkdown(notes) {
+    const entries = notes.map((note) => {
+      const details = [
+        `**Date:** ${formatDate(note.date)}`,
+        note.place ? `**Place:** ${note.place}` : "",
+        `**Kind:** ${kinds[note.kind] || "Field note"}`
+      ].filter(Boolean).join("  \n");
+
+      return `## ${note.title}\n\n${details}\n\n${note.body}`;
     });
+
+    return [
+      "# Williamsburg Field Notes",
+      "",
+      `Exported ${new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeStyle: "short" }).format(new Date())}`,
+      "",
+      entries.join("\n\n---\n\n"),
+      ""
+    ].join("\n");
+  }
+
+  function setArchiveStatus(message) {
+    archiveStatus.textContent = message;
+    window.clearTimeout(setArchiveStatus.timer);
+    setArchiveStatus.timer = window.setTimeout(() => {
+      if (archiveStatus.textContent === message) archiveStatus.textContent = "";
+    }, 3200);
+  }
+
+  function downloadMarkdown(notes) {
+    const blob = new Blob([notesAsMarkdown(notes)], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `williamsburg-field-notes-${easternDateKey()}.md`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setArchiveStatus("Field notes exported.");
+  }
+
+  async function shareNotes(notes) {
+    const markdown = notesAsMarkdown(notes);
+
+    try {
+      const file = typeof File === "function"
+        ? new File(
+            [markdown],
+            `williamsburg-field-notes-${easternDateKey()}.md`,
+            { type: "text/markdown" }
+          )
+        : null;
+
+      if (file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: "Williamsburg Field Notes",
+          text: "Our notes from Williamsburg.",
+          files: [file]
+        });
+        setArchiveStatus("Field notes shared.");
+        return;
+      }
+
+      if (navigator.share) {
+        await navigator.share({
+          title: "Williamsburg Field Notes",
+          text: markdown
+        });
+        setArchiveStatus("Field notes shared.");
+        return;
+      }
+
+      await navigator.clipboard.writeText(markdown);
+      setArchiveStatus("Sharing is unavailable here, so the notes were copied to your clipboard.");
+    } catch (error) {
+      if (error && error.name === "AbortError") return;
+
+      try {
+        await navigator.clipboard.writeText(markdown);
+        setArchiveStatus("The share sheet was unavailable, so the notes were copied to your clipboard.");
+      } catch {
+        downloadMarkdown(notes);
+        setArchiveStatus("Sharing was unavailable. A notes file was downloaded instead.");
+      }
+    }
+  }
+
+  function render() {
+    const notes = sortedNotes();
     list.replaceChildren();
     emptyState.hidden = notes.length > 0;
     noteCount.textContent = `${notes.length} ${notes.length === 1 ? "note" : "notes"}`;
+    exportButton.disabled = notes.length === 0;
+    shareButton.disabled = notes.length === 0;
+    printButton.disabled = notes.length === 0;
 
     notes.forEach((note) => {
       const fragment = template.content.cloneNode(true);
@@ -158,6 +257,9 @@
   });
 
   cancelButton.addEventListener("click", resetEditor);
+  exportButton.addEventListener("click", () => downloadMarkdown(sortedNotes()));
+  shareButton.addEventListener("click", () => shareNotes(sortedNotes()));
+  printButton.addEventListener("click", () => window.print());
   resetEditor();
   render();
 })();
