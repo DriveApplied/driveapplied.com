@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field Notes · Williamsburg</title>
+  <meta name="description" content="Private field notes for the Williamsburg trip, stored in this browser.">
+  <meta name="theme-color" content="#0b1c1b">
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="williamsburg.css">
+</head>
+<body>
+  <main class="page-shell notes-page">
+    <header class="topbar">
+      <a class="top-pill" href="index.html">← Back home</a>
+      <span id="localClock" class="top-pill">EDT</span>
+    </header>
+
+    <section class="content-hero notes-intro">
+      <span class="content-kicker">Private travel journal</span>
+      <h1>Field Notes</h1>
+      <p>Save the details that don’t belong on an itinerary: a favorite meal, something someone said, a place worth returning to, or a small piece of history discovered along the way.</p>
+      <div class="notes-privacy">
+        <span aria-hidden="true">⌂</span>
+        <p><strong>Stored on this device.</strong> These notes remain in this browser and are not uploaded or shared.</p>
+      </div>
+    </section>
+
+    <section class="notebook-layout">
+      <form id="noteForm" class="note-editor">
+        <div class="editor-heading">
+          <div>
+            <span class="section-number">New entry</span>
+            <h2 id="editorTitle">Add a field note</h2>
+          </div>
+          <button id="cancelEdit" class="quiet-button" type="button" hidden>Cancel edit</button>
+        </div>
+
+        <label for="noteTitle">Title</label>
+        <input id="noteTitle" name="title" maxlength="100" placeholder="The lantern-lit walk" required>
+
+        <div class="note-meta-fields">
+          <label>
+            Date
+            <input id="noteDate" name="date" type="date" required>
+          </label>
+          <label>
+            Place
+            <input id="notePlace" name="place" maxlength="80" placeholder="Duke of Gloucester Street">
+          </label>
+          <label>
+            Kind
+            <select id="noteKind" name="kind">
+              <option value="memory">Memory</option>
+              <option value="history">History discovered</option>
+              <option value="food">Food & drink</option>
+              <option value="favorite">Family favorite</option>
+              <option value="return">Return someday</option>
+              <option value="practical">Practical note</option>
+            </select>
+          </label>
+        </div>
+
+        <label for="noteBody">What happened?</label>
+        <textarea id="noteBody" name="body" rows="8" maxlength="3000" placeholder="Write down the detail you’ll want to remember…" required></textarea>
+
+        <div class="editor-actions">
+          <span id="saveStatus" role="status" aria-live="polite"></span>
+          <button id="saveNote" class="save-note" type="submit">Save note</button>
+        </div>
+      </form>
+
+      <section class="notes-archive" aria-labelledby="archiveTitle">
+        <header class="archive-heading">
+          <div>
+            <span class="section-number">The archive</span>
+            <h2 id="archiveTitle">Your entries</h2>
+          </div>
+          <span id="noteCount" class="archive-count">0 notes</span>
+        </header>
+        <div id="notesList" class="notes-list"></div>
+        <div id="emptyNotes" class="empty-notes">
+          <span aria-hidden="true">✎</span>
+          <h3>The first page is waiting.</h3>
+          <p>Add a memory, observation, or historical detail using the notebook.</p>
+        </div>
+      </section>
+    </section>
+
+    <p class="theme-footer" data-theme-label>Today’s theme: Williamsburg</p>
+  </main>
+
+  <template id="noteTemplate">
+    <article class="note-card">
+      <div class="note-card-top">
+        <span class="note-kind"></span>
+        <time></time>
+      </div>
+      <h3></h3>
+      <p class="note-place"></p>
+      <p class="note-body"></p>
+      <div class="note-actions">
+        <button class="edit-note" type="button">Edit</button>
+        <button class="delete-note" type="button">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="clock.js"></script>
+  <script src="notes.js"></script>
+</body>
+</html>
