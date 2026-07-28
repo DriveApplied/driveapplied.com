@@ -151,25 +151,12 @@
             "Take advantage of weekday crowds",
             "Leave around 3:00–4:00 PM"
           ]
-        },
-        {
-          "label": "Reset",
-          "items": [
-            "Return to the hotel",
-            "Rest before dinner"
-          ]
-        },
-        {
-          "label": "After dinner",
-          "items": [
-            "Walk the west end of Colonial Williamsburg"
-          ]
         }
       ],
       "reservation": {
-        "time": "6:45 PM",
-        "name": "Christiana Campbell’s Tavern",
-        "note": "A simple transition after a hotel break."
+        "time": "5:00 PM",
+        "name": "Celtic Fyre",
+        "note": "Celebrate Irish Culture with traditional step dancing.."
       }
     },
     {
