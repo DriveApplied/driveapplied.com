@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/hero-bg.jpg">
     <script>
-        tailwind = { config: { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } };
+        tailwind = { config: { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } } };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
@@ -70,7 +70,7 @@
                 <a class="transition-colors hover:text-[#0f72b8]" href="#about">About</a>
             </nav>
             <div class="flex items-center gap-3">
-                <a href="#contact" class="hidden rounded-sm bg-[#0f72b8] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-white hover:text-[#101311] sm:inline-flex">Define the Mission <span class="ml-2" aria-hidden="true">&rarr;</span></a>
+                <a href="#checkout" class="hidden rounded-sm bg-[#0f72b8] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-white hover:text-[#101311] sm:inline-flex">Define the Mission <span class="ml-2" aria-hidden="true">&rarr;</span></a>
                 <details class="relative lg:hidden">
                     <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-sm border border-white/20 text-xl focus:outline-none focus:ring-2 focus:ring-[#0f72b8]" aria-label="Open navigation menu">
                         <span aria-hidden="true">&#9776;</span>
@@ -124,48 +124,51 @@
 
                 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
                     <article id="briefing" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
-                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 01</span><span>Professional Application</span></div>
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 01</span><span>Front-End Workspace Application</span></div>
                         <div class="mt-12">
                             <h3 class="text-2xl font-semibold tracking-tight">Briefing</h3>
-                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A focused professional workspace for turning client context into clear briefs, decisions, and next steps.</p>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A sovereign daily workspace and reputation engine for independent operators. Briefing brings your calendar, notes, and local events into one day-to-day view, with private onboarding and an on-device profile canvas for matching RFPs to your skills.</p>
                         </div>
-                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Briefing%20Studio%20-%20Self-Serve%20Access"><span>Buy Now (Self-Serve Access)</span><span aria-hidden="true">&nearr;</span></a>
+                        <div class="mt-auto flex flex-wrap gap-3 border-t border-[#101311]/15 pt-5">
+                            <a class="border border-[#0f72b8] px-3 py-2 text-sm font-semibold text-[#0f72b8] hover:bg-[#0f72b8] hover:text-white" href="https://apps.apple.com">Download on App Store</a>
+                            <a class="border border-[#0f72b8] px-3 py-2 text-sm font-semibold text-[#0f72b8] hover:bg-[#0f72b8] hover:text-white" href="https://play.google.com/store">Get it on Google Play</a>
+                        </div>
                     </article>
 
                     <article id="vector" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
                         <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 02</span><span>Secure Runtime Environment</span></div>
                         <div class="mt-12">
                             <h3 class="text-2xl font-semibold tracking-tight">Vector</h3>
-                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A controlled runtime foundation for deploying intelligent applications with security and operational boundaries in place.</p>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A private, on-device second-mind runtime for professionals. Vector manages decision workflows and runs localized reasoning on host hardware, keeping proprietary work within your device rather than sending it through a public cloud runtime.</p>
                         </div>
-                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Vector%20Core%20-%20White-Label%20Instance"><span>Request White-Label Instance</span><span aria-hidden="true">&nearr;</span></a>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Vector%20Runtime%20Deployment"><span>Request Vector Deployment</span><span aria-hidden="true">&nearr;</span></a>
                     </article>
 
                     <article id="context" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
-                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 03</span><span>State Architecture</span></div>
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 03</span><span>State &amp; Knowledge Architecture</span></div>
                         <div class="mt-12">
                             <h3 class="text-2xl font-semibold tracking-tight">Context</h3>
-                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A persistent context layer that helps applications carry useful state across sessions, tools, and model interactions.</p>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A zero-trust memory pipeline that preserves state across isolated local model instances. Context processes public feeds and configured web sources to support discovery streams for independent work and consultant opportunities.</p>
                         </div>
-                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Context%20Mesh%20API%20Integration"><span>Integrate Context Mesh API</span><span aria-hidden="true">&nearr;</span></a>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Context%20Architecture"><span>Discuss Context Architecture</span><span aria-hidden="true">&nearr;</span></a>
                     </article>
 
                     <article id="relay" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-[#101311] p-6 text-white md:p-7 lg:col-span-2 lg:col-start-2">
                         <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-white/55"><span>Layer 04</span><span>Agentic Infrastructure</span></div>
                         <div class="mt-12">
                             <h3 class="text-2xl font-semibold tracking-tight">Relay</h3>
-                            <p class="mt-3 text-sm leading-6 text-white/65">Orchestration infrastructure for coordinating agent workflows, context, and governed execution across systems.</p>
+                            <p class="mt-3 text-sm leading-6 text-white/65">A low-latency agentic orchestration engine for background execution. Relay monitors changing feeds, evaluates alignment rules through Vector, and prepares offline engagement briefs or pitch responses.</p>
                         </div>
-                        <a class="mt-auto flex items-center justify-between border-t border-white/20 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-white" href="mailto:hello@driveapplied.com?subject=Drive%20Relay%20Intelligence%20-%20Infrastructure%20License"><span>License Infrastructure Engine</span><span aria-hidden="true">&nearr;</span></a>
+                        <a class="mt-auto flex items-center justify-between border-t border-white/20 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-white" href="mailto:hello@driveapplied.com?subject=Relay%20Infrastructure%20License"><span>License Relay Infrastructure</span><span aria-hidden="true">&nearr;</span></a>
                     </article>
 
                     <article id="control" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2 lg:col-start-4">
                         <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 05</span><span>Lifecycle Developer Tool</span></div>
                         <div class="mt-12">
                             <h3 class="text-2xl font-semibold tracking-tight">Control</h3>
-                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A lifecycle gateway for validating integrations and applying guardrails from development through release.</p>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">The Intelligent Control Process (ICP) lifecycle gateway. Control provides compile-time guardrails, prompt traceability, and deterministic execution structures in a sandboxed generation pipeline.</p>
                         </div>
-                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=ICP%20Guardrail%20Gateway%20-%20Sandbox%20Pipeline"><span>Access Sandbox Pipeline</span><span aria-hidden="true">&nearr;</span></a>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Control%20ICP%20Sandbox%20Pipeline"><span>Access Control Sandbox</span><span aria-hidden="true">&nearr;</span></a>
                     </article>
                 </div>
             </div>
@@ -175,29 +178,37 @@
             <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:gap-20">
                 <div>
                     <p class="mb-4 font-mono text-xs uppercase tracking-[.18em] text-[#0f72b8]">Applied intelligence / engineered to ship</p>
-                    <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">From useful intelligence to dependable execution.</h2>
+                    <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">Secure assets. Asynchronous delivery.</h2>
                 </div>
                 <div>
-                    <p class="max-w-2xl text-base leading-7 text-[#101311]/70">Drive Applied builds intelligent applications and the systems behind them. We bring product thinking, security architecture, and deterministic code execution together so teams can move from idea to production with confidence.</p>
-                    <div class="mt-8 flex flex-wrap gap-2" aria-label="Technical capabilities">
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">SwiftUI</span>
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Python</span>
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Go</span>
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">MCP Registry</span>
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">KMS Encryption</span>
-                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Sovereign Cloud</span>
-                    </div>
+                    <p class="max-w-2xl text-base leading-7 text-[#101311]/70">Drive Applied delivers pre-compiled, containerized code assets and infrastructure snapshots. Choose a self-directed deployment or license a source-code baseline; fulfillment runs through structured email requests, without open-ended consulting calls.</p>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="bg-[#0f72b8] px-5 py-16 text-white lg:px-8">
-            <div class="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                    <p class="mb-3 font-mono text-xs uppercase tracking-[.18em]">Start a conversation</p>
-                    <h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Define the mission.</h2>
+        <section id="checkout" class="bg-[#0f72b8] px-5 py-20 text-white lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="max-w-3xl">
+                    <p class="mb-3 font-mono text-xs uppercase tracking-[.18em] text-white/75">Fulfillment / asynchronous licensing</p>
+                    <h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Secure the Stack Asynchronously</h2>
+                    <p class="mt-5 text-base leading-7 text-white/85">Select a deployment pipeline. Each request opens a structured email with the relevant license details.</p>
                 </div>
-                <a href="mailto:hello@driveapplied.com" class="inline-flex w-fit items-center gap-3 border-b border-[#101311] pb-2 text-lg font-semibold hover:border-transparent">hello@driveapplied.com <span aria-hidden="true">&nearr;</span></a>
+                <div class="mt-10 grid gap-5 lg:grid-cols-2">
+                    <article class="flex flex-col border border-white/30 bg-white p-6 text-[#101311] sm:p-8">
+                        <p class="font-mono text-xs uppercase tracking-[.16em] text-[#0f72b8]">Tier 2 / up to 5 seats</p>
+                        <h3 class="mt-3 text-2xl font-semibold">Studio Team Bundle</h3>
+                        <p class="mt-4 leading-7 text-[#101311]/70">A multi-tenant, containerized local ecosystem, prepared for Docker and Colima, running the five-layer stack within your corporate perimeter.</p>
+                        <p class="mt-6 text-2xl font-semibold">$1,499 <span class="text-sm font-normal text-[#101311]/60">/ year</span></p>
+                        <a class="mt-7 inline-flex w-fit items-center gap-3 bg-[#0f72b8] px-4 py-3 text-sm font-semibold text-white hover:bg-[#0a5c98]" href="mailto:hello@driveapplied.com?subject=Request%20Studio%20Team%20Bundle%20Deployment%20License">License Team Bundle <span aria-hidden="true">&nearr;</span></a>
+                    </article>
+                    <article class="flex flex-col border border-white/30 bg-white p-6 text-[#101311] sm:p-8">
+                        <p class="font-mono text-xs uppercase tracking-[.16em] text-[#0f72b8]">Tier 3 / flat-fee asset</p>
+                        <h3 class="mt-3 text-2xl font-semibold">Core Source Code Asset</h3>
+                        <p class="mt-4 leading-7 text-[#101311]/70">A repository baseline for all five layers, including commercial white-label modification rights, delivered as an air-gapped asset transfer.</p>
+                        <p class="mt-6 text-2xl font-semibold">$9,500 <span class="text-sm font-normal text-[#101311]/60">flat fee</span></p>
+                        <a class="mt-7 inline-flex w-fit items-center gap-3 bg-[#0f72b8] px-4 py-3 text-sm font-semibold text-white hover:bg-[#0a5c98]" href="mailto:hello@driveapplied.com?subject=Request%20Layer%201-5%20Source%20Code%20Snapshot">License Source Code Asset <span aria-hidden="true">&nearr;</span></a>
+                    </article>
+                </div>
             </div>
         </section>
     </main>
@@ -205,6 +216,14 @@
     <footer class="bg-[#101311] px-5 py-7 text-white lg:px-8">
         <div class="mx-auto flex max-w-7xl flex-col gap-4 text-xs sm:flex-row sm:items-center sm:justify-between">
             <a href="#top" class="font-bold tracking-wide"><span class="text-[#0f72b8]">DRIVE</span> APPLIED</a>
+            <div class="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-wide text-white/55" aria-label="Technical capabilities">
+                <span>Swift / SwiftUI</span>
+                <span>Python</span>
+                <span>C# Middleware</span>
+                <span>MCP Registry</span>
+                <span>KMS Encryption</span>
+                <span>Sovereign Edge Computing</span>
+            </div>
             <div class="flex flex-col gap-2 text-white/60 sm:flex-row sm:items-center sm:gap-6">
                 <span>EST / United States</span>
                 <a class="hover:text-white" href="mailto:hello@driveapplied.com">hello@driveapplied.com</a>
