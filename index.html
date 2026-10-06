@@ -1,452 +1,216 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Drive Applied – Intelligent Application Delivery
-    </title>
-    <meta name="description" content="Drive Applied designs and ships focused, secure, AI-enabled apps and products.">
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <meta property="og:title" content="Drive Applied">
-    <meta property="og:description" content="Focused products. Secure, AI-enabled apps. Built with care.">
+    <title>Drive Applied - Intelligent Application Delivery</title>
+    <meta name="description" content="Elite enterprise AI infrastructure, security frameworks, and intelligent applications built for rapid execution.">
+    <meta name="theme-color" content="#101311">
+    <meta property="og:title" content="Drive Applied - Intelligent Application Delivery">
+    <meta property="og:description" content="Elite enterprise AI infrastructure, security frameworks, and intelligent applications built for rapid execution.">
     <meta property="og:image" content="assets/drive-web.png">
-    <meta name="theme-color" content="#0F72B8">
-    <!-- Tailwind Play CDN (no build step) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        // Tailwind runtime config
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol']
-                    }
-                }
-            }
-        }
-    </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Drive Applied",
-  "url": "https://www.driveapplied.com"
-}
-</script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/hero-bg.jpg">
+    <script>
+        tailwind = { config: { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #101311;
+            --paper: #f3f4ef;
+            --signal: #0f72b8;
+            --blue: #0f72b8;
+        }
+        html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+        body { background: var(--paper); }
+        .skip-link { transform: translateY(-150%); }
+        .skip-link:focus { transform: translateY(0); }
+        .hero-grid {
+            background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, black, transparent 92%);
+        }
+        .layer-card { transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease; }
+        .layer-card:hover { transform: translateY(-4px); }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Drive Applied",
+      "url": "https://www.driveapplied.com"
+    }
+    </script>
 </head>
+<body class="font-sans antialiased text-[#101311]">
+    <a class="skip-link fixed left-4 top-4 z-50 rounded bg-white px-4 py-3 text-sm font-semibold shadow-lg transition-transform" href="#main">Skip to content</a>
 
-<body class="antialiased text-slate-800">
-    <!-- Nav -->
-    <header class="fixed top-0 inset-x-0 z-30 bg-white/80 backdrop-blur border-b border-slate-200">
-        <div class="container-narrow px-4 py-3 flex items-center justify-between">
-            <a href="#top" class="flex items-center gap-3">
-                <img src="assets/logo.png" alt="Drive Applied logo" class="w-8 h-8" loading="eager" decoding="async">
-                <span class="font-sora tracking-wide">
-                    <span class="text-[var(--brand)] font-semibold">DRIVE</span>
-                    <span class="text-[var(--text-dark)]">Applied</span>
-                </span>
+    <header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#101311]/95 text-white backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
+            <a href="#top" class="flex shrink-0 items-center gap-3" aria-label="Drive Applied home">
+                <img src="assets/logo.png" alt="" class="h-8 w-8" width="32" height="32">
+                <span class="text-sm font-bold tracking-wide"><span class="text-[#0f72b8]">DRIVE</span> APPLIED</span>
             </a>
-            <nav class="hidden md:flex items-center gap-6 text-sm">
-                <a href="#products" class="hover:text-slate-900">Products</a><br />
-                <a href="#products" class="hover:text-slate-900">Work</a><br />
-                <a href="#platforms" class="hover:text-slate-900">Platforms</a><br />
-                <a href="#enterprise" class="hover:text-slate-900">Enterprise</a><br />
-                <a href="#about" class="hover:text-slate-900">About</a>
+            <nav aria-label="Primary navigation" class="hidden items-center gap-7 text-xs font-medium text-white/75 lg:flex">
+                <a class="transition-colors hover:text-[#0f72b8]" href="#briefing">Briefing</a>
+                <a class="transition-colors hover:text-[#0f72b8]" href="#vector">Vector</a>
+                        <a class="transition-colors hover:text-[#0f72b8]" href="#context">Context</a>
+                <a class="transition-colors hover:text-[#0f72b8]" href="#relay">Relay</a>
+                <a class="transition-colors hover:text-[#0f72b8]" href="#control">Control</a>
+                <a class="transition-colors hover:text-[#0f72b8]" href="#about">About</a>
             </nav>
-            <a href="#contact" class="btn-brand text-white px-4 py-2 rounded-xl text-sm shadow">Chart a Course
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden rounded-sm bg-[#0f72b8] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-white hover:text-[#101311] sm:inline-flex">Define the Mission <span class="ml-2" aria-hidden="true">&rarr;</span></a>
+                <details class="relative lg:hidden">
+                    <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-sm border border-white/20 text-xl focus:outline-none focus:ring-2 focus:ring-[#0f72b8]" aria-label="Open navigation menu">
+                        <span aria-hidden="true">&#9776;</span>
+                    </summary>
+                    <nav aria-label="Mobile navigation" class="absolute right-0 top-12 flex w-56 flex-col border border-white/15 bg-[#101311] p-2 text-sm shadow-xl">
+                        <a class="px-3 py-3 hover:bg-white/10" href="#briefing">Briefing</a>
+                        <a class="px-3 py-3 hover:bg-white/10" href="#vector">Vector</a>
+                        <a class="px-3 py-3 hover:bg-white/10" href="#context">Context</a>
+                        <a class="px-3 py-3 hover:bg-white/10" href="#relay">Relay</a>
+                        <a class="px-3 py-3 hover:bg-white/10" href="#control">Control</a>
+                        <a class="px-3 py-3 hover:bg-white/10" href="#about">About</a>
+                        <a class="mt-1 bg-[#0f72b8] px-3 py-3 font-semibold text-white" href="#contact">Define the Mission</a>
+                    </nav>
+                </details>
+            </div>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section id="top" class="relative min-h-[88vh] flex items-center">
-        <img src="assets/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Historic rocket launch">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/50"></div>
-        <div class="hero-overlay absolute inset-0"></div>
-        <div class="relative container-narrow px-4 pt-28 pb-16">
-            <div class="max-w-2xl">
-                <div class="inline-flex items-center gap-2 tag rounded-full px-3 py-1 text-xs mb-4">
-                    <span>App Maker</span><span>AI + Security</span><span>Python, Java, C#</span><span>SwiftUI •
-                        Web</span>
+    <main id="main">
+        <section id="top" class="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-[#101311] pt-24 text-white sm:min-h-[90svh]">
+            <img src="assets/hero-bg.jpg" alt="" class="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-40" fetchpriority="high" width="3000" height="2300">
+            <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,19,17,.96)_0%,rgba(16,19,17,.78)_48%,rgba(16,19,17,.2)_100%),linear-gradient(0deg,rgba(16,19,17,.75),transparent_70%)]"></div>
+            <div class="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-40"></div>
+            <div class="mx-auto w-full max-w-7xl px-5 pb-16 pt-20 sm:pb-24 lg:px-8">
+                <div class="max-w-4xl">
+                    <p class="mb-7 inline-flex items-center gap-3 border border-white/25 bg-black/20 px-3 py-2 font-mono text-[10px] uppercase tracking-[.18em] text-white/85 sm:text-xs">
+                        <span class="h-2 w-2 rounded-full bg-[#0f72b8]"></span>
+                        Applied systems / 5-layer architecture
+                    </p>
+                    <h1 class="text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">Applied Intelligence.<br><span class="text-[#0f72b8]">Products that launch.</span></h1>
+                    <div class="mt-8 flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
+                        <p class="max-w-xl text-base leading-7 text-white/75 sm:text-lg">From the first professional workflow to secure runtime and agentic infrastructure, we turn applied intelligence into systems teams can put to work.</p>
+                        <a href="#briefing" class="inline-flex w-fit items-center gap-5 border border-[#0f72b8] bg-[#0f72b8] px-5 py-4 text-sm font-bold text-white transition-colors hover:border-white hover:bg-white hover:text-[#101311]">Initialize the Stack <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
+                <div class="mt-16 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[.16em] text-white/55">
+                    <span class="h-px w-10 bg-[#0f72b8]"></span> Built for rapid, deterministic execution
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="stack-heading" class="bg-[#f3f4ef] px-5 py-20 sm:py-28 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-12 flex flex-col gap-5 border-b border-[#101311]/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <p class="mb-3 font-mono text-xs uppercase tracking-[.18em] text-[#0f72b8]">One integrated system / five layers</p>
+                        <h2 id="stack-heading" class="max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">A product stack, built to move.</h2>
+                    </div>
+                    <p class="max-w-sm text-sm leading-6 text-[#101311]/65">Purpose-built applications and infrastructure, connected from user workflow to governed runtime.</p>
                 </div>
 
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">Applied
-                    Intelligence.<br /><span class="text-[var(--brand)]">Products that launch.</span></h1>
-
-                <p class="mt-4 text-lg md:text-xl text-slate-700">
-                    We build AI products and platforms that launch.
-                </p>
-                <div class="mt-8 flex items-center gap-3">
-                    <a href="#products" class="btn-brand text-white px-5 py-3 rounded-xl shadow">See
-                        Products</a>
-                    <!-- <a href="#products" class="px-5 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50">View
-                        <!-- Nav -->
-                    <header class="fixed top-0 inset-x-0 z-30 bg-white backdrop-blur border-b border-slate-200">
-                        <div class="container-narrow px-4 py-3 flex items-center justify-between">
-                            <a href="#top" class="flex items-center gap-3">
-                                <img src="assets/logo.png" alt="Drive Applied logo" class="w-8 h-8" loading="eager"
-                                    decoding="async">
-                                <span class="font-sora tracking-wide">
-                                    <span class="text-[var(--brand)] font-semibold">DRIVE</span>
-                                    <span class="text-[var(--text-dark)]">Applied</span>
-                                </span>
-                            </a>
-                            <nav id="main-nav" class="hidden md:flex items-center gap-6 text-sm">
-                                <a href="#products" class="hover:text-slate-900">Professional</a>
-                                <a href="#platforms" class="hover:text-slate-900">Platforms</a>
-                                <a href="#enterprise" class="hover:text-slate-900">Enterprise</a>
-                                <!-- <a href="#curation" class="hover:text-slate-900">Curation</a> -->
-                                <a href="#about" class="hover:text-slate-900">About</a>
-                            </nav>
-                            <div class="flex items-center gap-2">
-                                <!-- Mobile menu button -->
-                                <button id="menu-btn"
-                                    class="md:hidden p-2 rounded-lg hover:bg-slate-100 focus:outline-none"
-                                    aria-label="Open menu">
-                                    <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <line x1="4" y1="7" x2="20" y2="7" stroke-width="2" stroke-linecap="round" />
-                                        <line x1="4" y1="12" x2="20" y2="12" stroke-width="2" stroke-linecap="round" />
-                                        <line x1="4" y1="17" x2="20" y2="17" stroke-width="2" stroke-linecap="round" />
-                                    </svg>
-                                </button>
-                                <a href="#contact"
-                                    class="hidden md:flex btn-brand text-white px-4 py-2 rounded-xl text-sm shadow">Define
-                                    the Mission
-                                </a>
-                            </div>
+                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+                    <article id="briefing" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 01</span><span>Professional Application</span></div>
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-semibold tracking-tight">Briefing</h3>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A focused professional workspace for turning client context into clear briefs, decisions, and next steps.</p>
                         </div>
-                        <!-- Mobile nav -->
-                        <nav id="mobile-nav" class="md:hidden hidden flex flex-col gap-3 px-4 pt-4 pb-4 border-t border-slate-200">
-                            <a href="#products" class="hover:text-slate-900">Professional</a>
-                            <a href="#platforms" class="hover:text-slate-900">Platforms</a>
-                            <a href="#enterprise" class="hover:text-slate-900">Enterprise</a>
-                            <!-- <a href="#curation" class="hover:text-slate-900">Curation</a> -->
-                            <a href="#about" class="hover:text-slate-900">About</a>
-                            <a href="#contact" class="btn-brand text-white px-4 py-2 rounded-xl text-sm shadow">Define the Mission</a>
-                        </nav>
-                    </header>
-                    <script>
-                        // Toggle mobile nav and close on link click
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const menuBtn = document.getElementById('menu-btn');
-                            const mobileNav = document.getElementById('mobile-nav');
-                            menuBtn.addEventListener('click', function () {
-                                mobileNav.classList.toggle('hidden');
-                            });
-                            // Close mobile nav when any link is clicked
-                            mobileNav.querySelectorAll('a').forEach(function (link) {
-                                link.addEventListener('click', function () {
-                                    mobileNav.classList.add('hidden');
-                                });
-                            });
-                        });
-                    </script>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Briefing%20Studio%20-%20Self-Serve%20Access"><span>Buy Now (Self-Serve Access)</span><span aria-hidden="true">&nearr;</span></a>
+                    </article>
+
+                    <article id="vector" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 02</span><span>Secure Runtime Environment</span></div>
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-semibold tracking-tight">Vector</h3>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A controlled runtime foundation for deploying intelligent applications with security and operational boundaries in place.</p>
+                        </div>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Vector%20Core%20-%20White-Label%20Instance"><span>Request White-Label Instance</span><span aria-hidden="true">&nearr;</span></a>
+                    </article>
+
+                    <article id="context" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2">
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 03</span><span>State Architecture</span></div>
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-semibold tracking-tight">Context</h3>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A persistent context layer that helps applications carry useful state across sessions, tools, and model interactions.</p>
+                        </div>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=Context%20Mesh%20API%20Integration"><span>Integrate Context Mesh API</span><span aria-hidden="true">&nearr;</span></a>
+                    </article>
+
+                    <article id="relay" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-[#101311] p-6 text-white md:p-7 lg:col-span-2 lg:col-start-2">
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-white/55"><span>Layer 04</span><span>Agentic Infrastructure</span></div>
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-semibold tracking-tight">Relay</h3>
+                            <p class="mt-3 text-sm leading-6 text-white/65">Orchestration infrastructure for coordinating agent workflows, context, and governed execution across systems.</p>
+                        </div>
+                        <a class="mt-auto flex items-center justify-between border-t border-white/20 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-white" href="mailto:hello@driveapplied.com?subject=Drive%20Relay%20Intelligence%20-%20Infrastructure%20License"><span>License Infrastructure Engine</span><span aria-hidden="true">&nearr;</span></a>
+                    </article>
+
+                    <article id="control" class="layer-card flex min-h-[330px] flex-col border border-[#101311]/15 bg-white p-6 md:p-7 lg:col-span-2 lg:col-start-4">
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[.16em] text-[#101311]/55"><span>Layer 05</span><span>Lifecycle Developer Tool</span></div>
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-semibold tracking-tight">Control</h3>
+                            <p class="mt-3 text-sm leading-6 text-[#101311]/65">A lifecycle gateway for validating integrations and applying guardrails from development through release.</p>
+                        </div>
+                        <a class="mt-auto flex items-center justify-between border-t border-[#101311]/15 pt-5 text-sm font-semibold text-[#0f72b8] hover:text-[#101311]" href="mailto:hello@driveapplied.com?subject=ICP%20Guardrail%20Gateway%20-%20Sandbox%20Pipeline"><span>Access Sandbox Pipeline</span><span aria-hidden="true">&nearr;</span></a>
+                    </article>
                 </div>
+            </div>
+        </section>
 
-    </section>
-
-    <!-- Work -->
-    <section id="products" class="py-20 bg-slate-50">
-        <div class="container-narrow px-4">
-            <div class="flex items-center gap-4">
-                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+        <section id="about" class="bg-white px-5 py-20 sm:py-24 lg:px-8">
+            <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:gap-20">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Professional Intelligence</h2>
-                    <p class="mt-3 text-slate-600 max-w-2xl">Tools that make professionals more effective.</p>
+                    <p class="mb-4 font-mono text-xs uppercase tracking-[.18em] text-[#0f72b8]">Applied intelligence / engineered to ship</p>
+                    <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">From useful intelligence to dependable execution.</h2>
                 </div>
-            </div>
-        </div>
-        <div class="container-narrow px-4">
-            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Consultants</div>
-                    <h3 class="mt-2 text-xl font-semibold">Briefing</h3>
-                    <p class="mt-2 text-slate-600">
-                        Consultant practice dashboard with client intelligence, pipeline insights, and delivery metrics.
-                    </p>
-                    <div class="mt-5 text-sm text-slate-400 font-mono">
-                        Coming 2027
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Memory</div>
-                    <h3 class="mt-2 text-xl font-semibold">Context Mesh</h3>
-                    <p class="mt-2 text-slate-600">
-                        Cross-model memory layer enabling persistent context across AI interactions and platforms.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Discuss integration →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Athletes</div>
-                    <h3 class="mt-2 text-xl font-semibold">Standout.PRO</h3>
-                    <p class="mt-2 text-slate-600">
-                        Athlete pathway platform connecting 8 million high school athletes to college and pro
-                        opportunity.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request early access →
-                        </a>
-                    </div>
-                </article> -->
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Platforms -->
-    <section id="platforms" class="py-20 bg-white">
-        <div class="container-narrow px-4">
-            <div class="flex items-center gap-4">
-                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Intelligence Platforms</h2>
-                    <p class="mt-3 text-slate-600 max-w-2xl">Infrastructure for building AI systems.</p>
+                    <p class="max-w-2xl text-base leading-7 text-[#101311]/70">Drive Applied builds intelligent applications and the systems behind them. We bring product thinking, security architecture, and deterministic code execution together so teams can move from idea to production with confidence.</p>
+                    <div class="mt-8 flex flex-wrap gap-2" aria-label="Technical capabilities">
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">SwiftUI</span>
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Python</span>
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Go</span>
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">MCP Registry</span>
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">KMS Encryption</span>
+                        <span class="border border-[#101311]/15 px-3 py-2 font-mono text-xs">Sovereign Cloud</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container-narrow px-4">
-            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </section>
 
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Intelligence</div>
-                    <h3 class="mt-2 text-xl font-semibold">Drive Relay Intelligence</h3>
-                    <p class="mt-2 text-slate-600">
-                        Agentic orchestration platform with cache-augmented intelligence and governed telemetry.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Discuss integration →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Assurance</div>
-                    <h3 class="mt-2 text-xl font-semibold">Intelligence Assurance Platform</h3>
-                    <p class="mt-2 text-slate-600">
-                        Monitor, validate, and continuously assure AI systems with unified dashboard and observability
-                        tools.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request scope →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Prompt Engineering</div>
-                    <h3 class="mt-2 text-xl font-semibold">Generative Workbench</h3>
-                    <p class="mt-2 text-slate-600">
-                        End-to-end platform for prompt engineering: data enrichment, instruction development, and
-                        quality validation.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request scope →
-                        </a>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Enterprise -->
-    <section id="enterprise" class="py-20 bg-slate-50">
-        <div class="container-narrow px-4">
-            <div class="flex items-center gap-4">
-                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
+        <section id="contact" class="bg-[#0f72b8] px-5 py-16 text-white lg:px-8">
+            <div class="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Enterprise Deliverables</h2>
-                    <p class="mt-3 text-slate-600 max-w-2xl">Fixed-scope builds for rapid deployment.</p>
+                    <p class="mb-3 font-mono text-xs uppercase tracking-[.18em]">Start a conversation</p>
+                    <h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Define the mission.</h2>
                 </div>
+                <a href="mailto:hello@driveapplied.com" class="inline-flex w-fit items-center gap-3 border-b border-[#101311] pb-2 text-lg font-semibold hover:border-transparent">hello@driveapplied.com <span aria-hidden="true">&nearr;</span></a>
             </div>
-        </div>
-        <div class="container-narrow px-4">
-            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </section>
+    </main>
 
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Mobile Intelligence</div>
-                    <h3 class="mt-2 text-xl font-semibold">Intelligent Application MVP</h3>
-                    <p class="mt-2 text-slate-600">
-                        Mobile app with auth, API integration, offline storage, and on-device LLM.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request scope →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Security</div>
-                    <h3 class="mt-2 text-xl font-semibold">Encryption Service</h3>
-                    <p class="mt-2 text-slate-600">
-                        File encryption with key vault, audit trail, and recovery flow.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request scope →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Web</div>
-                    <h3 class="mt-2 text-xl font-semibold">Boutique Microsite</h3>
-                    <p class="mt-2 text-slate-600">
-                        Fast, SEO-ready static site with brand theming and GitHub Pages deployment.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#contact" class="text-[var(--brand)] font-medium">
-                            Request scope →
-                        </a>
-                    </div>
-                </article> -->
-
-            </div>
-        </div>
-    </section>
-
-        <!-- Curation -->
-    <!-- <section id="curation" class="py-20 bg-white">
-        <div class="container-narrow px-4">
-            <div class="flex items-center gap-4">
-                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Intelligent Curation</h2>
-                    <p class="mt-3 text-slate-600 max-w-2xl">AI-powered experiences for life's moments.</p>
-                </div>
-            </div>
-        </div>
-        <div class="container-narrow px-4">
-            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Consumer</div>
-                    <h3 class="mt-2 text-xl font-semibold">A Marshmallow World</h3>
-                    <p class="mt-2 text-slate-600">
-                        Holiday companion that captures traditions, curates memories, and connects generations.
-                    </p>
-                    <div class="mt-5">
-                        <a href="#" class="text-[var(--brand)] font-medium">
-                            Visit App Store →
-                        </a>
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Consumer</div>
-                    <h3 class="mt-2 text-xl font-semibold">JingleVerse</h3>
-                    <p class="mt-2 text-slate-600">
-                        AI-guided holiday experiences with countdown cards and curated worlds—Jingle as your companion
-                        through the season.
-                    </p>
-                    <div class="mt-5 text-sm text-slate-400 font-mono">
-                        Coming Spring 2026
-                    </div>
-                </article>
-
-                <article class="card rounded-2xl border bg-white p-6 shadow-sm">
-                    <div class="text-sm uppercase tracking-wide text-slate-500">Platform</div>
-                    <h3 class="mt-2 text-xl font-semibold">Seasonal Worlds</h3>
-                    <p class="mt-2 text-slate-600">
-                        Valentine's, anniversaries, birthdays, and beyond. One intelligent platform, infinite
-                        celebrations.
-                    </p>
-                    <div class="mt-5 text-sm text-slate-400 font-mono">
-                        In Development
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section> -->
-
-    <!-- About -->
-    <section id="about" class="py-20">
-        <div class="container-narrow px-4">
-            <div class="flex items-center gap-4">
-                <img src="assets/logo.png" class="w-14 h-14" alt="Drive wordmark" loading="lazy" decoding="async">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">About Drive Applied</h2>
-                </div>
-            </div>
-            <div class="mt-6 grid md:grid-cols-3 gap-6">
-                <div class="md:col-span-2">
-                    <p class="text-slate-700"> <span class="font-sora tracking-wide">
-                            <span class="text-[var(--brand)] font-semibold">DRIVE</span>
-                            <span class="text-[var(--text-dark)]">Applied</span>
-                        </span> builds AI products and platforms that launch.</p>
-                    <p class="mt-4 text-slate-700">
-                        We operate at the intersection of applied intelligence, security architecture, and rapid
-                        execution. Consumer experiences. Professional tools. Enterprise infrastructure. All built to
-                        ship.</p>
-                    <ul class="mt-4 grid sm:grid-cols-2 gap-2 text-slate-700">
-                        <li>• SwiftUI, Python, TypeScript</li>
-                        <li>• MCP, RAG & agentic patterns</li>
-                        <li>• Encryption & key management</li>
-                        <li>• Static sites & GitHub Pages</li>
-                        <li>• Cloud: Azure, AWS, GCP</li>
-                        <li>• Robotics, IoT, small devices</li>
-                    </ul>
-                </div>
-                <div class="rounded-2xl border bg-slate-50 p-6">
-                    <div class="text-sm text-slate-600">Contact</div>
-                    <div class="mt-2 font-medium">hello@driveapplied.com</div>
-                    <div class="mt-3 text-sm text-slate-600">Location</div>
-                    <div class="mt-1">United States (EST)</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-slate-900 text-white">
-        <div class="container-narrow px-4">
-            <div class="text-center">
-                <h2 class="text-3xl md:text-4xl font-bold">Get in touch.</h2>
-                <p class="mt-4 text-xl text-slate-300">
-                    <a href="mailto:hello@driveapplied.com"
-                        class="hover:text-white transition-colors">hello@driveapplied.com</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 bg-slate-950 text-slate-400 h-64">
-        <div class="container-narrow px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <img src="assets/logo.png" class="w-6 h-6" alt="Drive logo">
-                <span class="text-sm">© 2026 Drive Applied</span>
-            </div>
-            <div class="text-sm">
-                <a href="#products" class="hover:text-slate-900">Professional</a> ·
-                <a href="#platforms" class="hover:text-slate-900">Platforms</a> ·
-                <a href="#enterprise" class="hover:text-slate-900">Enterprise</a> ·
-                <a href="#curation" class="hover:text-slate-900">Curation</a> ·
-                <a href="#about" class="hover:text-slate-900">About</a> ·
-                <a class="footer-link" href="mailto:hello@driveapplied.com">Contact</a>
+    <footer class="bg-[#101311] px-5 py-7 text-white lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 text-xs sm:flex-row sm:items-center sm:justify-between">
+            <a href="#top" class="font-bold tracking-wide"><span class="text-[#0f72b8]">DRIVE</span> APPLIED</a>
+            <div class="flex flex-col gap-2 text-white/60 sm:flex-row sm:items-center sm:gap-6">
+                <span>EST / United States</span>
+                <a class="hover:text-white" href="mailto:hello@driveapplied.com">hello@driveapplied.com</a>
+                <span>&copy; 2027 Drive Applied</span>
             </div>
         </div>
     </footer>
 </body>
-
 </html>
